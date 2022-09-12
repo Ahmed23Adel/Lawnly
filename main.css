@@ -453,7 +453,7 @@ align-items: center;
   display: none;
 }
 h1{
-  margin-top: 19%;
+  /* margin-top: 19%; */
   margin-left: 1%;
   text-decoration: none;
   background-image: var(--color-grad-main);
