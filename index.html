@@ -10,7 +10,10 @@
 <body>
     <!-- Navigation Bar -->
     <nav>
-        <a class="nav-logo" href="../index.html"><img src="../images/nav-logo.png" alt="Lawnly"></a>
+        <div style="display:flex ;">
+            <a class="nav-logo" href="../index.html"><img src="../images/nav-logo.png" alt="Lawnly"></a>
+            <h1>Lawnly</h1>
+        </div>
 
         <div class="nav_elements">
             <ul>
@@ -23,10 +26,91 @@
     </nav>
     <div class="BackGround_Image">
         <div class="index_Bg" >
+            <div class="main">
+                <div>
+                    <label class="button" for="fileElem">Upload Image</label>
+                    <div id="drop-area">
+                        <h4 id="placeholder">Upload Preferably Grayscale Images</h4>
+                        <form class="my-form">
+                          <input type="file" id="fileElem" multiple accept="image/*" onchange="handleFiles(this.files)">
+                        </form>
+                        <div id="gallery"></div>
+                    </div>
+                </div>
 
+                <div class="drop-area" style="margin-top:4.9% ;" >
+                    <img src="">
+                </div>
+                
+            </div>
+                <button class="Colorize">Colorize</button>
         </div>
     </div>
 
 </body>
+<script>
+    let dropArea = document.getElementById('drop-area')
+    ;['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+    dropArea.addEventListener(eventName, preventDefaults, false)
+    })
 
+    function preventDefaults (e) {
+        e.preventDefault()
+        e.stopPropagation()
+    }
+
+    ;['dragenter', 'dragover'].forEach(eventName => {
+    dropArea.addEventListener(eventName, highlight, false)
+    })
+
+    ;['dragleave', 'drop'].forEach(eventName => {
+    dropArea.addEventListener(eventName, unhighlight, false)
+    })
+
+    function highlight(e) {
+    dropArea.classList.add('highlight')
+    }
+
+    function unhighlight(e) {
+    dropArea.classList.remove('highlight')
+    }
+
+    dropArea.addEventListener('drop', handleDrop, false)
+
+    function handleDrop(e) {
+    let dt = e.dataTransfer
+    let files = dt.files
+
+    handleFiles(files)
+    }
+
+    function handleFiles(files) {
+        files = [...files]
+        uploadFile(files[0])
+        previewFile(files[0])
+        files=[];
+    }
+
+    function uploadFile(file) {
+        let url = 'YOUR URL HERE'
+        let formData = new FormData()
+        formData.append('file', file)
+    }
+
+    function previewFile(file) {
+        let imgs= document.getElementById('gallery');
+        imgs.innerHTML = '';
+        let placeholder= document.getElementById('placeholder');
+            placeholder.style.display= 'none' ;
+
+        let reader = new FileReader()
+        reader.readAsDataURL(file)
+        reader.onloadend = function() {
+            let img = document.createElement('img')
+            img.setAttribute('id', 'INPUT');//This Is where we create the input image in the html with id=INPUT
+            img.src = reader.result
+            imgs.appendChild(img)
+        }
+    }
+</script>
 </html>
