@@ -28,9 +28,27 @@
     <div class="BackGround_Image">
         <div class="Wrapper" >
             <!--Body of the model page-->
-            <div>
+            <div class="links-container">
+ 
+                <!-- The href attribute of anchor
+                    tags point to the section IDs -->
+                <!-- Note that href has to point to IDs
+                    and not to classes as IDs are
+                    unique in HTML-->
+                <h1>Table of contents</h1>
+                <a class="table-contents-item" href="#links-container">Table of content</a> <br/>
+                <a class="table-contents-item" href="#intro-div">Introduction</a> <br/>
+                <a class="table-contents-item" href="#dataset-div">Dataset</a> <br/>
+                <a class="table-contents-item" href="#line-arts">How did we generate line art images?</a> <br/>
+                <a class="table-contents-item" href="#loss-func">Loss function</a> <br/>
+                <a class="table-contents-item" href="#preprocessing">Preprocessing</a> <br/>
+                <a class="table-contents-item" href="#gen-net">Generator network</a> <br/>
+            </div>
+
+            <div id="intro-div">
                 <h1 class="introduction">Introduction</h1>
                 <p class="intro-body">
+                    
                     We tried in this model to colorize anime arts, It's already known that colorizing the line art,
                      and choosing appropriate colors for the image; that represents the true story of the image is 
                      a very hard task and might take several hours, and maybe days; additionally, it requires professional 
@@ -96,7 +114,7 @@
                     Note that the generated image might have different colors, however, colors are coherent and match the story of what the image tries to say.
                 </p>
             </div>
-            <div>
+            <div id="dataset-div">
                 <br/> <br/>
                 <h1 class="introduction">Dataset</h1>
                 <p class="intro-body">
@@ -109,7 +127,7 @@
                 </p>
                 
             </div>
-            <div>
+            <div id="line-arts">
                 <br/> <br/>
                 <h1 class="introduction">How did we generate line art images?</h1>
                 <p class="intro-body">
@@ -145,7 +163,7 @@
                 </p>
             </div>
 
-            <div>
+            <div id="loss-func">
                 <br/> <br/>
                 <h1 class="introduction">Loss function</h1>
                 <p  class="intro-body">
@@ -188,15 +206,15 @@
                 </p>
             </div>
 
-            <div>
+            <div id="preprocessing">
                 <br/> <br/>
                 <h1 class="introduction">Preprocessing</h1>
                 <p class="intro-body">
                     There was no much preprocessing to do, although we just resized to image to 256x256, then enabled us to train the model with batch size = 5, followed by normalizing the image.
                 </p>
             </div>
-
-            <div>
+            
+            <div id="gen-net"> 
                 <br/> <br/>
                 <h1 class="introduction">generator network</h1>
                 <br/>
@@ -234,6 +252,7 @@
                     <img src="../images/papaer-network.png" alt="Lawnly" class="paper-newtwork-img">
                     
                 </div>
+
                 <p class="intro-body">
                     The notebook for training is provided 
                     <a class = "link-to-paper1" href="https://colab.research.google.com/drive/1-p9SblM6VNrklKi2Ogj1FOVhPcirnMw5?usp=sharing" target="_blank">here. </a>

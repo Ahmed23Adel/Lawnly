@@ -84,3 +84,23 @@
     width: 500px;
     margin: 16px;
 }
+
+.table-contents-item{
+    padding: 32px;
+    text-decoration: none;
+    background-image: var(--color-grad-main);
+    background-size: 100%;
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -moz-text-fill-color: transparent;
+    font-size: 20px;
+}
+html {
+    scroll-behavior: smooth;
+    margin: 0;
+    padding: 0;
+    
+  }
+  
