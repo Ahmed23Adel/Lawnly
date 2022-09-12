@@ -5,7 +5,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=0.9">
     <title>Lawnly - About The Model</title>
-    <link rel="stylesheet" href="../main.css">
+    <link rel="stylesheet" href="..\main.css">
+    <link rel="stylesheet" href="pages_styles\model.css">
+    <link rel="icon" type="images/x-icon" href="/images/nav-logo.png">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
 <body>
     <!-- Navigation Bar -->
@@ -23,10 +27,228 @@
     </nav>
     <div class="BackGround_Image">
         <div class="Wrapper" >
+            <!--Body of the model page-->
+            <div>
+                <h1 class="introduction">Introduction</h1>
+                <p class="intro-body">
+                    We tried in this model to colorize anime arts, It's already known that colorizing the line art,
+                     and choosing appropriate colors for the image; that represents the true story of the image is 
+                     a very hard task and might take several hours, and maybe days; additionally, it requires professional 
+                     artists. That's why we worked on a training deep learning model; that can learn the color palette for
+                      the image, and colorize appropriately in a matter of seconds, with no human help. Our model competes 
+                      with the state-of-the-art models published in many papers. We proudly published our model online for
+                       any usage -Even commercially- with no penalty, but using our website might be limited only.
+                    </br> </br>  
+                    Our model is based on a U-NET network; however, it's a bit modified from the original one, by utilizing a swish layer, which was firstly published by Ru-Ting Ye 
+                    <a class = "link-to-paper1" href="https://ieeexplore.ieee.org/document/8959911" target="_blank">(Ye et al., 2019)</a>
+                    We didn't use GAN for image generation training; although, we used VGG19 as visual perceptron, 
+                    and used them in some way as a loss function; it generated great results, better than what we got after training GAN.
+                    </br> </br>   
+                </p>
 
+                <h2 class="sample-results">Sample of results</h2>
+                <div class="sample-div">
+                    <div>
+                        <img src="../images/line_art.jpg" alt="Lawnly" class="sample">
+                        <h4 class="sample-desc"> Line art</h4>
+                    </div>
+                    <div>
+                        <img src="../images/generated.png" alt="Lawnly" class="sample">
+                        <h4  class="sample-desc"> Generated image</h4>
+                    </div>
+                    <div>
+                        <img src="../images/original.jpg" alt="Lawnly" class="sample">
+                        <h4  class="sample-desc"> Original one</h4>
+                    </div>
+                    
+                </div>
+                <div class="sample-div">
+                    <div>
+                        <img src="../images/line_art2.jpg" alt="Lawnly" class="sample">
+                        <h4 class="sample-desc"> Line art</h4>
+                    </div>
+                    <div>
+                        <img src="../images/generated2.png" alt="Lawnly" class="sample">
+                        <h4  class="sample-desc"> Generated image</h4>
+                    </div>
+                    <div>
+                        <img src="../images/original2.jpg" alt="Lawnly" class="sample">
+                        <h4  class="sample-desc"> Original one</h4>
+                    </div>
+                    
+                </div>
+                <div class="sample-div">
+                    <div>
+                        <img src="../images/line_art3.jpg" alt="Lawnly" class="sample">
+                        <h4 class="sample-desc"> Line art</h4>
+                    </div>
+                    <div>
+                        <img src="../images/generated3.png" alt="Lawnly" class="sample">
+                        <h4  class="sample-desc"> Generated image</h4>
+                    </div>
+                    <div>
+                        <img src="../images/original3.jpg" alt="Lawnly" class="sample">
+                        <h4  class="sample-desc"> Original one</h4>
+                    </div>
+                    
+                </div>
+                <p class="intro-body">
+                    Note that the generated image might have different colors, however, colors are coherent and match the story of what the image tries to say.
+                </p>
+            </div>
+            <div>
+                <br/> <br/>
+                <h1 class="introduction">Dataset</h1>
+                <p class="intro-body">
+                    <img src="../images/kaggle-images.jpeg" alt="Lawnly" class="kaggle-img">
+                    Usually, projects like such use dataset from <a class = "link-to-paper1" href="https://www.gwern.net/Danbooru2021" target="_blank">danbooru </a>, but we lacked 
+                    the computational power to use their whole dataset which is in terabytes. We found subset of their data worth of 300K on 
+                    <a class = "link-to-paper1" href="https://www.kaggle.com/datasets/subinium/highresolution-anime-face-dataset-512x512" target="_blank">kaggle </a>,
+                     we only used 50k images only from this dataset, to be able to upload them easily on drive and train the network on Google Colab. 
+                     
+                </p>
+                
+            </div>
+            <div>
+                <br/> <br/>
+                <h1 class="introduction">How did we generate line art images?</h1>
+                <p class="intro-body">
+                    For this type of deep learning training, we usually need the original colored images, 
+                    and original line art image, before colorizing, but we didn't have the auxiliary to
+                     have such both, no dataset online had both, to overcome this problem, we only used 
+                     colored images dataset and transformed it to line art by Sobel operator. We used this  
+                     <a class = "link-to-paper1" href="https://colab.research.google.com/drive/1bdNKx0e1asGzJQb4bYV-s5BKpv1_AXJ7?usp=sharing" target="_blank">notebook</a> for such a task
+                    
+                    <br/><br/>
+                    We tried many methods for converting to line art, like the difference of Gaussians, but Sobel could provide us with the most likely hand-drawn images.
+                    <div class="sample-div">
+                        <div>
+                            <img src="../images/original4.jpg" alt="Lawnly" class="sample">
+                            <h4  class="sample-desc"> Original one</h4>
+                        </div>
+                        <div>
+                            <img src="../images/arrow.png" alt="Lawnly" class="sample">
+                            <h4  class="sample-desc"> Sobel operator</h4>
+                        </div>
+                        <div>
+                            <img src="../images/line_art4.jpg" alt="Lawnly" class="sample">
+                            <h4 class="sample-desc"> After sobel operator</h4>
+                        </div>
+                        
+                        
+                    </div>
+                    <p class="intro-body">
+                        We used both of original image, and line-art generated image as training sets for our model.
+
+                    </p>
+                    
+                </p>
+            </div>
+
+            <div>
+                <br/> <br/>
+                <h1 class="introduction">Loss function</h1>
+                <p  class="intro-body">
+                    <script src='https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
+                    <script type="text/x-mathjax-config">
+                    MathJax.Hub.Config({
+                        tex2jax: { inlineMath: [['$', '$']] }
+                    });
+                    </script>
+
+
+                    We used VGG19 as visual perception, which  we used to generate the loss. we used the following equation, 
+                    \[Loss = \lambda \sum_{i=0}^{2}|f_i(x_{gen})-f_i(x_{orig})|.sumElements()/numElements()\]
+                    <script type="text/javascript" src="https://www.hostmath.com/Math/MathJax.js?config=OK"></script>
+                    <!-- <br/>
+                    Loss =  $\lambda \sum_{i=0}^{2}|f_i^1(x)-f_i^2(x)|$ -->
+                    where: <br/>
+                    <a class="symbol-math">$x_{gen}$ </a> : is the generated image by the U-NET network. <br/>
+                    <a class="symbol-math">$x_{orig}$ </a> : is the original colored image. <br/>
+                    <a class="symbol-math">$f$ </a> : is VGG19 pretrained networks. <br/>
+                    <a class="symbol-math">$f_i$ </a> : is ith layer of VGG19 network.<br/>
+                    <a class="symbol-math">$f_i(x)$ </a> : is output of VGG19 of input image at exactly ith layer.<br/>
+                    <a class="symbol-math">$\lambda$ </a> : is weights for eacy layer, which are {0.5,1,1} <br/>
+                    <a class="symbol-math">sumElements() </a> : we sum all pixels of the difference between the original image and generated image after passing through VGG19 ith layer <br/>
+                    <a class="symbol-math">numElements() </a> : number of all elements of a pixel in all channels, as we divide the sum by the number of elements; like it's average. <br/>
+                    <br/> 
+                    In the original papers, they optimized the $\lambda$  to have different weights between layers,
+                     but their weights didn't work for us, and we didn't have the computational power to search in 
+                     such space, so we set weights for the second and third layers to be 1, and the first layer to
+                      be half, as not have a large effect of loss, as the first layer only compute the pixel-wise 
+                      difference, while second and third, may compute deeper features from images.
+
+
+                   
+                        
+                    
+
+
+                    
+                </p>
+            </div>
+
+            <div>
+                <br/> <br/>
+                <h1 class="introduction">Preprocessing</h1>
+                <p class="intro-body">
+                    There was no much preprocessing to do, although we just resized to image to 256x256, then enabled us to train the model with batch size = 5, followed by normalizing the image.
+                </p>
+            </div>
+
+            <div>
+                <br/> <br/>
+                <h1 class="introduction">generator network</h1>
+                <br/>
+                <h2 class="sub-header">Swish layer</h2>
+                <div class="swish-layer-div">
+                    <p class="swish-layer-body">
+                        Starting with the swish layer, it outputs the same number of channels as a number of input channels. the image passes through a convolution layer 
+                        and then passed through the sigmoid layer, and the output of the sigmoid is element-wise multiplied by the input image
+                    </p>
+                    <img src="../images/swish-layer.png" alt="Lawnly" class="swish-layer-img">
+                </div>
+
+                <div class="swish-layer-div">
+                    <p class="swish-layer-body">
+                        In U-net there is a connection between corresponding layers, for example in their paper, they use a swish layer to: <br/> <br/>
+                        <a class="symbol-math">1- Conv2d </a> <br/>
+                        <a class="symbol-math">2- BatchNormalization </a> <br/>
+                        <a class="symbol-math">3- LeakyRelu</a> <br/>
+                        <a class="symbol-math">4- Conv2d </a> <br/>
+                        <a class="symbol-math">5- BatchNormalization </a> <br/>
+                        <a class="symbol-math">6- LeakyRelu </a> <br/><br/>
+                        So for the down part of U-NET, we only used four of DoubleConv block, <br/>
+                        <a class="symbol-math">1- from 64 to 128 </a> <br/>
+                        <a class="symbol-math">2- from 128 to 256 </a> <br/>
+                        <a class="symbol-math">3- from 256 to 512</a> <br/>
+                        <a class="symbol-math">4- Bottleneck layer from 512 to 1024 </a> <br/> <br/>
+                        For the up part, we managed to transform from 1024 to 3 channels only through 4 blocks of DoubleConv.
+                         We then connected the swish layers as described by the original paper, but only the vertical ones.
+                          We added a Dropout layer to be able to not use hint matrix, and let the model use different colors for different images.
+                         We added drop-out after every two consequent blocks in the down part, and every 3 consequent blocks in the up part. 
+                         We additionally, used the same Dropout layer for all networks.
+                    
+                    </p>
+
+                    <img src="../images/papaer-network.png" alt="Lawnly" class="paper-newtwork-img">
+                    
+                </div>
+                <p class="intro-body">
+                    The notebook for training is provided 
+                    <a class = "link-to-paper1" href="https://colab.research.google.com/drive/1-p9SblM6VNrklKi2Ogj1FOVhPcirnMw5?usp=sharing" target="_blank">here. </a>
+              
+                </p>
+               
+            </div>
+
+        </div>
+            
+        
         </div>
     </div>
 
+    
 </body>
 
 </html>

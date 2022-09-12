@@ -322,7 +322,8 @@ nav {
   align-content: center;
   background-size: cover;
   vertical-align: middle;
-  padding-top: 15rem;
+  /* padding-top: 2rem; */
+  padding: 2rem;
 }
 
 .index_Bg {
