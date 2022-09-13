@@ -305,7 +305,7 @@ nav {
 .Wrapper {
   margin-top: 2.5rem;
   min-height: 80rem;
-  width: 90%;
+  width: 85%;
   background-color: rgba(65, 56, 56, 0.7);
   -webkit-background-size: cover;
   -moz-background-size: cover;
@@ -372,7 +372,7 @@ align-items: center;
   height: 70px;
   margin-top: 5%;
   cursor: pointer;
-  margin-left: 41.5%;
+  margin-left: 43.5%;
   font-size: larger;
   font-weight: 900;
   border-radius: 10px;
@@ -434,14 +434,29 @@ align-items: center;
   vertical-align: middle;
 }
 
+#gallery-out {
+  margin-top: 10px;
+  margin: auto auto;
+  align-self: center;
+}
+
+#gallery-out>img {
+  width: 500px;
+  height: 450px;
+  margin-top: 3%;
+  margin-left:3.5%;
+  vertical-align: middle;
+}
+
 .button {
   display: inline-block;
   padding: 10px;
-  margin-left: 190px;
+  margin-left: 180px;
   margin-bottom: 2%;
   cursor: pointer;
   text-align: center;
   font-size: large;
+  width:136.117px;
   border-radius: 5px;
   border: 2px solid #55d51c;
 }
@@ -453,7 +468,6 @@ align-items: center;
   display: none;
 }
 h1{
-  /* margin-top: 19%; */
   margin-left: 1%;
   text-decoration: none;
   background-image: var(--color-grad-main);

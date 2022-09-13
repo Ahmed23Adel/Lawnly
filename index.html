@@ -1,12 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=0.9">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lawnly - Home</title>
+    <link rel="icon" type="images/x-icon" href="/images/nav-logo.png">
     <link rel="stylesheet" href="./main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
+
 <body>
     <!-- Navigation Bar -->
     <nav>
@@ -24,6 +28,7 @@
             </ul>
         </div>
     </nav>
+
     <div class="BackGround_Image">
         <div class="index_Bg" >
             <div class="main">
@@ -38,16 +43,34 @@
                     </div>
                 </div>
 
-                <div class="drop-area" style="margin-top:4.9% ;" >
-                    <img src="">
-                </div>
-                
+                <div>
+                    <a style="margin-left:35% ;" class="button" href="#" onclick="prepHref(this)" ><i class="fa fa-download"> </i> Download</a>
+                    <div class="drop-area">
+                        <div id="gallery-out">
+                        </div>
+                    </div>
+                </div>   
             </div>
                 <button class="Colorize">Colorize</button>
         </div>
     </div>
 
 </body>
+
+<script type="text/javascript"> 
+    function prepHref(linkElement) { 
+        var myDiv = document.getElementById('gallery-out'); 
+        var myImage = myDiv.children[0]; 
+        if(myImage!==undefined){
+            linkElement.href = myImage.src; 
+            linkElement.target="_blank";
+        }
+        else{
+            linkElement.target="";
+        }
+    } 
+</script>
+
 <script>
     let dropArea = document.getElementById('drop-area')
     ;['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
@@ -113,4 +136,5 @@
         }
     }
 </script>
+
 </html>
