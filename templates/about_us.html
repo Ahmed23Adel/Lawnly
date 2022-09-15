@@ -1,0 +1,71 @@
+<!DOCTYPE html> 
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lawnly - About Us</title>
+    <link rel="icon" type="images/x-icon" href="/images/nav-logo.png">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/about_us.css') }}">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav>
+        <a class="nav-logo" href="../index.html"><img src="{{ url_for('static', filename='images/nav-logo.png') }}" alt="Lawnly"></a>
+
+        <div class="nav_elements">
+            <ul>
+                <li><a class="not-active" href="{{ url_for('index') }}">Home</a></li>
+                <li><a class="active" href="{{ url_for('about_us') }}">About Us</a></li>
+                <li><a class="not-active" href="{{ url_for('about_model') }}">About The Model</a></li>
+                <li><a class="not-active" href="https://github.com/Ahmed23Adel/Lawnly" target="_blank">GitHub</a></li>
+            </ul>
+        </div>
+    </nav>
+    <div class="BackGround_Image" >
+        <div class="Wrapper" >
+            <div class="quote">
+                <h1>“You don't learn to walk by following rules. You learn by doing, and by falling over.”</h1>
+                <h1>― Richard Branson</h1>
+            </div>
+
+            <div style="display:flex;flex-wrap:nowrap;" id="profs" >
+                    <div class="profile" style="margin-left: 5%;">
+                        <h1 style="margin-left:20%;">Ahmed Adel</h1>
+                        <div class="profile-pic">
+                            <img src="{{ url_for('static', filename='images/Adel.jpg') }}" alt="">
+                        </div>
+                        <div class="social-container"style="margin-right: 3%;" >
+                            <a id="s-li" href="https://www.linkedin.com/in/ahmed23adel/" target="_blank" class="social"><img src="{{ url_for('static', filename='images/i_linkedin.svg') }}" alt=""></a>
+                            <a id="s-g" href="https://mail.google.com/mail/?view=cm&fs=1&to=s-ahmed.abdelmohsen@zewailcity.edu.eg" target="_blank" class="social"><img src="{{ url_for('static', filename='images/i_gmail.svg') }}" alt=""></a>
+                            <a id="s-gh" href="https://github.com/Ahmed23Adel/" target="_blank" class="social"><img src="{{ url_for('static', filename='images/i_github.svg') }}" alt=""></a>
+                        </div>
+                    </div>
+        
+                    <div class="profile">
+                        <h1 style="margin-left:21%;">Omar Emad</h1>
+                        <div class="profile-pic">
+                            <img src="{{ url_for('static', filename='images/Omar.jpg') }}" alt="">
+                        </div>
+                        <div  class="social-container" >
+                            <a id="s-g" href="https://mail.google.com/mail/?view=cm&fs=1&to=s-omar.emad@zewailcity.edu.eg" target="_blank" class="social"><img src="{{ url_for('static', filename='images/i_gmail.svg') }}" alt=""></a>
+                            <a id="s-gh" href="https://github.com/The-Sad-Zewalian/" target="_blank" class="social"><img src="{{ url_for('static', filename='images/i_github.svg') }}"" alt=""></a>
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+<script>
+    function setup(){
+        let width = screen.width;
+        let profs=document.getElementById('profs');
+        if(width<1250){
+            profs.setAttribute("flex-wrap","wrap");
+            profs.setAttribute("margin-left","30%")
+        }
+    } 
+</script>
+</html>

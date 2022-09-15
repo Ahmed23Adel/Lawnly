@@ -1,5 +1,4 @@
 .profile{
-    margin-top: 10%;
     margin-right:23% ;
 }
 .profile-pic>img {
@@ -50,7 +49,5 @@
 .quote{
     margin-left: 2%;
     word-wrap: normal;
-    margin-top: 20%;
-    margin-bottom: 5%;
 
 }

@@ -54,9 +54,9 @@ def about_model():
     return render_template("model.html")
 
 
-@app.route('/about', methods=['GET', 'POST'])
+@app.route('/about_us', methods=['GET', 'POST'])
 def about_us():
-    return render_template("about.html")
+    return render_template("about_us.html")
 
 
 
