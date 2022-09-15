@@ -29,7 +29,6 @@
                 <li><a class="active" href="{{ url_for('index') }}">Home</a></li>
                 <li><a class="not-active" href="{{ url_for('about_us') }}">About Us</a></li>
                 <li><a class="not-active" href="{{ url_for('about_model') }}">About The Model</a></li>
-                <!-- <li><a class="not-active" href="../pages/github.html">GitHub</a></li> -->
                 <li><a class="not-active" href="https://github.com/Ahmed23Adel/Lawnly" target="_blank">GitHub</a></li>
             </ul>
         </div>
@@ -42,10 +41,11 @@
                     <label class="button" for="fileElem">Upload Image</label>
                     <div id="drop-area">
                         <h4 id="placeholder">Upload Preferably Grayscale Images</h4>
-                        <form class="my-form">
-                          <input type="file" id="fileElem" multiple accept="image/*" onchange="handleFiles(this.files)">
+                        <form id="myform" class="my-form" method='POST' enctype='multipart/form-data'>
+                          <input type="file" id="fileElem" name="file1" multiple accept="image/*" onchange="handleFiles(this.files)" required>
                         </form>
-                        <div id="gallery"></div>
+                        <div id="gallery">
+                        </div>
                     </div>
                 </div>
 
@@ -55,13 +55,9 @@
                         <div id="gallery-out">
                         </div>
                     </div>
-                </div>   
+                </div> 
             </div>
-            <form method='POST' enctype='multipart/form-data'>
-                {{form.hidden_tag()}}
-                {{form.file()}}
-                {{form.submit()}}
-            </form>
+            <button class="submit_button" type="submit" form="myform" value="Submit">Colorize</button>  
         </div>
     </div>
 

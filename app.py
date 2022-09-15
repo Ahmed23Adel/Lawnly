@@ -37,17 +37,16 @@ class UploadFileForm(FlaskForm):
 @app.route('/', methods=['GET',"POST"])
 @app.route('/home', methods=['GET',"POST"])
 def index():
-    form = UploadFileForm()
-    if form.validate_on_submit():
-        file = form.file.data # First grab the file
+    if request.method == 'POST':
+        file = request.files['file1'] # First grab the file
         filename_unq = str(uuid.uuid4())
         filename_unq = str(filename_unq+"_"+file.filename)
         file_full_name = "{}\{}\{}".format(os.path.abspath(os.path.dirname(__file__)),app.config['UPLOAD_FOLDER'],secure_filename(str(filename_unq)))
         file.save(file_full_name) # Then save the file
         colorize_img(file_full_name)
         gen_file_path = filename_unq.replace(".","_gen.")
-        return render_template('index_uploaded.html', form=form, gray_val=filename_unq,gen_val=gen_file_path)
-    return render_template('index.html', form=form)
+        return render_template('index_uploaded.html', gray_val=filename_unq, gen_val=gen_file_path)
+    return render_template('index.html')
 
 @app.route('/model', methods=['GET', 'POST'])
 def about_model():

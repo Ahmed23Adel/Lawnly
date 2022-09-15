@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=0.9">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>Uploaded</title>
     <!-- <link rel="stylesheet" href="./main.css"> -->
     <!-- <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/skel.css') }}" /> -->
@@ -54,7 +55,6 @@
                 <li><a class="active" href="{{ url_for('index') }}">Home</a></li>
                 <li><a class="not-active" href="{{ url_for('about_us') }}">About Us</a></li>
                 <li><a class="not-active" href="{{ url_for('about_model') }}">About The Model</a></li>
-                <!-- <li><a class="not-active" href="../pages/github.html">GitHub</a></li> -->
                 <li><a class="not-active" href="https://github.com/Ahmed23Adel/Lawnly" target="_blank">GitHub</a></li>
             </ul>
         </div>
@@ -64,25 +64,105 @@
             <div class="main">
                 <div>
                     <label class="button" for="fileElem">Upload Image</label>
-                    <div id="drop-area" class="gray-img-drop-area">
-                        <img src="{{ url_for('static', filename='' + gray_val + '') }}" width=100%, alt="">
-
+                    <div id="drop-area">
+                        <form id="myform" class="my-form" method='POST' enctype='multipart/form-data'>
+                          <input type="file" id="fileElem" name="file1" multiple accept="image/*" onchange="handleFiles(this.files)" required>
+                        </form>
+                        <div id="gallery">
+                            <img src="{{ url_for('static', filename='' + gray_val + '') }}" width=100%, alt="">
+                        </div>
                     </div>
                 </div>
 
-                <div id="drop-area" style="margin-top:4.9% ;" class="generated-img-drop-area">
-                    <img src="{{ url_for('static', filename='' + gen_val + '') }}" width=100%, alt="">
+                <div>
+                    <a style="margin-left:35% ;" class="button" href="#" onclick="prepHref(this)" ><i class="fa fa-download"> </i> Download</a>
+                    <div class="drop-area">
+                        <div id="gallery-out">
+                            <img src="{{ url_for('static', filename='' + gen_val + '') }}", alt="" style="margin-top:2.5%;">
+                        </div>
+                    </div>
                 </div>
-                
             </div>
-            <form method='POST' enctype='multipart/form-data'>
-                {{form.hidden_tag()}}
-                {{form.file()}}
-                {{form.submit()}}
-            </form>
+            <button class="submit_button" type="submit" form="myform" value="Submit">Colorize</button> 
         </div>
     </div>
 
 </body>
+<script type="text/javascript"> 
+    function prepHref(linkElement) { 
+        var myDiv = document.getElementById('gallery-out'); 
+        var myImage = myDiv.children[0]; 
+        if(myImage!==undefined){
+            linkElement.href = myImage.src; 
+            linkElement.target="_blank";
+        }
+        else{
+            linkElement.target="";
+        }
+    } 
+</script>
 
+<script>
+    let dropArea = document.getElementById('drop-area')
+    ;['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+    dropArea.addEventListener(eventName, preventDefaults, false)
+    })
+
+    function preventDefaults (e) {
+        e.preventDefault()
+        e.stopPropagation()
+    }
+
+    ;['dragenter', 'dragover'].forEach(eventName => {
+    dropArea.addEventListener(eventName, highlight, false)
+    })
+
+    ;['dragleave', 'drop'].forEach(eventName => {
+    dropArea.addEventListener(eventName, unhighlight, false)
+    })
+
+    function highlight(e) {
+    dropArea.classList.add('highlight')
+    }
+
+    function unhighlight(e) {
+    dropArea.classList.remove('highlight')
+    }
+
+    dropArea.addEventListener('drop', handleDrop, false)
+
+    function handleDrop(e) {
+    let dt = e.dataTransfer
+    let files = dt.files
+
+    handleFiles(files)
+    }
+
+    function handleFiles(files) {
+        files = [...files]
+        uploadFile(files[0])
+        previewFile(files[0])
+        files=[];
+    }
+
+    function uploadFile(file) {
+        let url = 'YOUR URL HERE'
+        let formData = new FormData()
+        formData.append('file', file)
+    }
+
+    function previewFile(file) {
+        let imgs= document.getElementById('gallery');
+        imgs.innerHTML = '';
+
+        let reader = new FileReader()
+        reader.readAsDataURL(file)
+        reader.onloadend = function() {
+            let img = document.createElement('img')
+            img.setAttribute('id', 'INPUT');//This Is where we create the input image in the html with id=INPUT
+            img.src = reader.result
+            imgs.appendChild(img)
+        }
+    }
+</script>
 </html>

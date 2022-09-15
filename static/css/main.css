@@ -285,7 +285,7 @@ nav {
 .BackGround_Image {
   height: 100%;
   /* background: url(../images/main-bg.jpg) no-repeat center; */
-  background-image: url(images/main-bg.jpg); 
+  background-image: url(../images/main-bg.jpg); 
   -webkit-background-size: 100%;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -423,7 +423,7 @@ align-items: center;
 }
 
 #gallery {
-  margin-top: 10px;
+  margin-top: 2%;
   margin: auto auto;
   align-self: center;
 }
@@ -435,6 +435,18 @@ align-items: center;
   vertical-align: middle;
 }
 
+#gallery-out {
+  margin-top: 2%;
+  margin: auto auto;
+  align-self: center;
+}
+
+#gallery-out>img {
+  width: 500px;
+  height: 450px;
+  margin-left:3.5%;
+  vertical-align: middle;
+}
 .button {
   display: inline-block;
   padding: 10px;
