@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=0.9">
+    <title>Lawnly - About Us</title>
+    <link rel="stylesheet" href="../main.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/about.css') }}">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav>
+        <a class="nav-logo" href="../index.html"><img src="{{ url_for('static', filename='images/nav-logo.png') }}" alt="Lawnly"></a>
+
+        <div class="nav_elements">
+            <ul>
+                <li><a class="not-active" href="{{ url_for('index') }}">Home</a></li>
+                <li><a class="active" href="{{ url_for('about_us') }}">About Us</a></li>
+                <li><a class="not-active" href="{{ url_for('about_model') }}">About The Model</a></li>
+                <li><a class="not-active" href="https://github.com/Ahmed23Adel/Lawnly" target="_blank">GitHub</a></li>
+            </ul>
+        </div>
+    </nav>
+    <div class="BackGround_Image" >
+        <div class="Wrapper" >
+            <p class="intro-body">
+                Don't expect too much we are just undergrad student at Zewail city majoring in Aritificial intellegence.
+            </p>
+            <div class="ahmed-adel-profile">
+
+            </div>
+            
+        </div>
+    </div>
+
+</body>
+
+</html>
