@@ -5,8 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=0.9">
     <title>Lawnly - About The Model</title>
-    <link rel="stylesheet" href="..\main.css">
-    <link rel="stylesheet" href="pages_styles\model.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/model.css') }}">
     <link rel="icon" type="images/x-icon" href="/images/nav-logo.png">
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -14,17 +14,15 @@
 <body>
     <!-- Navigation Bar -->
     <nav>
-        <div style="display:flex ;">
-            <a class="nav-logo" href="../index.html"><img src="../images/nav-logo.png" alt="Lawnly"></a>
-            <h1>Lawnly</h1>
-        </div>
+
+        <a class="nav-logo" href="../index.html"><img src="{{ url_for('static', filename='images/nav-logo.png') }}" alt="Lawnly"></a>
 
         <div class="nav_elements">
             <ul>
-                <li><a class="not-active" href="../index.html">Home</a></li>
-                <li><a class="not-active" href="../pages/about.html">About Us</a></li>
-                <li><a class="active" href="../pages/model.html">About The Model</a></li>
-                <li><a class="not-active" href="../pages/github.html">GitHub</a></li>
+                <li><a class="not-active" href="{{ url_for('index') }}">Home</a></li>
+                <li><a class="not-active" href="{{ url_for('about_us') }}">About Us</a></li>
+                <li><a class="active" href="{{ url_for('about_model') }}">About The Model</a></li>
+                <li><a class="not-active" href="https://github.com/Ahmed23Adel/Lawnly" target="_blank">GitHub</a></li>
             </ul>
         </div>
     </nav>
@@ -70,45 +68,45 @@
                 <h2 class="sample-results">Sample of results</h2>
                 <div class="sample-div">
                     <div>
-                        <img src="../images/line_art.jpg" alt="Lawnly" class="sample">
+                        <img src="{{ url_for('static', filename='images/line_art.jpg') }}" alt="Lawnly" class="sample">
                         <h4 class="sample-desc"> Line art</h4>
                     </div>
                     <div>
-                        <img src="../images/generated.png" alt="Lawnly" class="sample">
+                        <img src="{{ url_for('static', filename='images/generated.png') }}" alt="Lawnly" class="sample">
                         <h4  class="sample-desc"> Generated image</h4>
                     </div>
                     <div>
-                        <img src="../images/original.jpg" alt="Lawnly" class="sample">
+                        <img src="{{ url_for('static', filename='images/original.jpg') }}" alt="Lawnly" class="sample">
                         <h4  class="sample-desc"> Original one</h4>
                     </div>
                     
                 </div>
                 <div class="sample-div">
                     <div>
-                        <img src="../images/line_art2.jpg" alt="Lawnly" class="sample">
+                        <img src="{{ url_for('static', filename='images/line_art2.jpg') }}" alt="Lawnly" class="sample">
                         <h4 class="sample-desc"> Line art</h4>
                     </div>
                     <div>
-                        <img src="../images/generated2.png" alt="Lawnly" class="sample">
+                        <img src="{{ url_for('static', filename='images/generated2.png') }}" alt="Lawnly" class="sample">
                         <h4  class="sample-desc"> Generated image</h4>
                     </div>
                     <div>
-                        <img src="../images/original2.jpg" alt="Lawnly" class="sample">
+                        <img src="{{ url_for('static', filename='images/original2.jpg') }}" alt="Lawnly" class="sample">
                         <h4  class="sample-desc"> Original one</h4>
                     </div>
                     
                 </div>
                 <div class="sample-div">
                     <div>
-                        <img src="../images/line_art3.jpg" alt="Lawnly" class="sample">
+                        <img src="{{ url_for('static', filename='images/line_art3.jpg') }}" alt="Lawnly" class="sample">
                         <h4 class="sample-desc"> Line art</h4>
                     </div>
                     <div>
-                        <img src="../images/generated3.png" alt="Lawnly" class="sample">
+                        <img src="{{ url_for('static', filename='images/generated3.png') }}" alt="Lawnly" class="sample">
                         <h4  class="sample-desc"> Generated image</h4>
                     </div>
                     <div>
-                        <img src="../images/original3.jpg" alt="Lawnly" class="sample">
+                        <img src="{{ url_for('static', filename='images/original3.jpg') }}" alt="Lawnly" class="sample">
                         <h4  class="sample-desc"> Original one</h4>
                     </div>
                     
@@ -121,7 +119,7 @@
                 <br/> <br/>
                 <h1 class="introduction">Dataset</h1>
                 <p class="intro-body">
-                    <img src="../images/kaggle-images.jpeg" alt="Lawnly" class="kaggle-img">
+                    <img src="{{ url_for('static', filename='images/kaggle-images.jpeg') }}" alt="Lawnly" class="kaggle-img">
                     Usually, projects like such use dataset from <a class = "link-to-paper1" href="https://www.gwern.net/Danbooru2021" target="_blank">danbooru </a>, but we lacked 
                     the computational power to use their whole dataset which is in terabytes. We found subset of their data worth of 300K on 
                     <a class = "link-to-paper1" href="https://www.kaggle.com/datasets/subinium/highresolution-anime-face-dataset-512x512" target="_blank">kaggle </a>,
@@ -144,15 +142,15 @@
                     We tried many methods for converting to line art, like the difference of Gaussians, but Sobel could provide us with the most likely hand-drawn images.
                     <div class="sample-div">
                         <div>
-                            <img src="../images/original4.jpg" alt="Lawnly" class="sample">
+                            <img src="{{ url_for('static', filename='images/original4.jpg') }}" alt="Lawnly" class="sample">
                             <h4  class="sample-desc"> Original one</h4>
                         </div>
                         <div>
-                            <img src="../images/arrow.png" alt="Lawnly" class="sample">
+                            <img src="{{ url_for('static', filename='images/arrow.png') }}" alt="Lawnly" class="sample">
                             <h4  class="sample-desc"> Sobel operator</h4>
                         </div>
                         <div>
-                            <img src="../images/line_art4.jpg" alt="Lawnly" class="sample">
+                            <img src="{{ url_for('static', filename='images/line_art4.jpg') }}" alt="Lawnly" class="sample">
                             <h4 class="sample-desc"> After sobel operator</h4>
                         </div>
                         
@@ -227,7 +225,7 @@
                         Starting with the swish layer, it outputs the same number of channels as a number of input channels. the image passes through a convolution layer 
                         and then passed through the sigmoid layer, and the output of the sigmoid is element-wise multiplied by the input image
                     </p>
-                    <img src="../images/swish-layer.png" alt="Lawnly" class="swish-layer-img">
+                    <img src="{{ url_for('static', filename='images/swish-layer.png') }}" alt="Lawnly" class="swish-layer-img">
                 </div>
 
                 <div class="swish-layer-div">
@@ -252,13 +250,14 @@
                     
                     </p>
 
-                    <img src="../images/papaer-network.png" alt="Lawnly" class="paper-newtwork-img">
+                    <img src="{{ url_for('static', filename='images/papaer-network.png') }}" alt="Lawnly" class="paper-newtwork-img">
                     
                 </div>
 
                 <p class="intro-body">
                     The notebook for training is provided 
-                    <a class = "link-to-paper1" href="https://colab.research.google.com/drive/1-p9SblM6VNrklKi2Ogj1FOVhPcirnMw5?usp=sharing" target="_blank">here. </a>
+                    <a class = "link-to-paper1" href="https://colab.research.google.com/drive/1-p9SblM6VNrklKi2Ogj1FOVhPcirnMw5?usp=sharing" target="_blank">here, </a> and the model iteself can be downlaode via that 
+                    <a class = "link-to-paper1" href="https://drive.google.com/file/d/1BrCHC579OnSq3LGtOZ1ncH6smPdo1JUT/view?usp=sharing" target="_blank">link. </a>
               
                 </p>
                

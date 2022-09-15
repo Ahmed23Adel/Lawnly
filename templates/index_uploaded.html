@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=0.9">
+    <title>Uploaded</title>
+    <!-- <link rel="stylesheet" href="./main.css"> -->
+    <!-- <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/skel.css') }}" /> -->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/main.css') }}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script> 
+     <style type="text/css">
+        .gray-img-drop-area{
+            max-width:256px;
+            max-height:256px;
+            object-fit: contain;
+            background-repeat: no-repeat;
+            background-size: contain;
+        }
+        .generated-img-drop-area{
+            max-width:256px;
+            max-height:256px;
+            object-fit: contain;
+            background-repeat: no-repeat;
+            background-size: contain;
+        }
+        .gray-image, .gray-image:after {
+            /* content: url("{{gray_val}}"); */
+            max-width:256px;
+            max-height:256px;
+            object-fit: contain;
+            background-repeat: no-repeat;
+            background-size: contain;
+        }
+        .generated_image{
+            /* content: url("{{ url_for('static', filename='generated_images/f905e1af-5a08-4dec-abdf-8679233323f7_line_art.jpg') }}"); */
+            max-width:256px;
+            max-height:256px;
+            object-fit: contain
+        }
+    </style>
+
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav>
+        <div style="display:flex ;">
+            <a class="nav-logo" href="{{ url_for('index') }}"><img src="{{ url_for('static', filename='images/nav-logo.png') }}" alt="Lawnly"></a>
+            <h1>Lawnly</h1>
+        </div>
+
+        <div class="nav_elements">
+            <ul>
+                <li><a class="active" href="{{ url_for('index') }}">Home</a></li>
+                <li><a class="not-active" href="{{ url_for('about_us') }}">About Us</a></li>
+                <li><a class="not-active" href="{{ url_for('about_model') }}">About The Model</a></li>
+                <!-- <li><a class="not-active" href="../pages/github.html">GitHub</a></li> -->
+                <li><a class="not-active" href="https://github.com/Ahmed23Adel/Lawnly" target="_blank">GitHub</a></li>
+            </ul>
+        </div>
+    </nav>
+    <div class="BackGround_Image">
+        <div class="index_Bg" >
+            <div class="main">
+                <div>
+                    <label class="button" for="fileElem">Upload Image</label>
+                    <div id="drop-area" class="gray-img-drop-area">
+                        <img src="{{ url_for('static', filename='' + gray_val + '') }}" width=100%, alt="">
+
+                    </div>
+                </div>
+
+                <div id="drop-area" style="margin-top:4.9% ;" class="generated-img-drop-area">
+                    <img src="{{ url_for('static', filename='' + gen_val + '') }}" width=100%, alt="">
+                </div>
+                
+            </div>
+            <form method='POST' enctype='multipart/form-data'>
+                {{form.hidden_tag()}}
+                {{form.file()}}
+                {{form.submit()}}
+            </form>
+        </div>
+    </div>
+
+</body>
+
+</html>

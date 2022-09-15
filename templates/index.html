@@ -9,22 +9,29 @@
     <link rel="icon" type="images/x-icon" href="/images/nav-logo.png">
     <link rel="stylesheet" href="./main.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- <link rel="stylesheet" href="./main.css"> -->
+    <!-- <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/skel.css') }}" /> -->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/main.css') }}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script> 
+	 <script src="{{ url_for('static', filename='js/signUp.js') }}"></script>
+
 </head>
 
 <body>
     <!-- Navigation Bar -->
     <nav>
         <div style="display:flex ;">
-            <a class="nav-logo" href="../index.html"><img src="../images/nav-logo.png" alt="Lawnly"></a>
+            <a class="nav-logo" href="{{ url_for('index') }}"><img src="{{ url_for('static', filename='images/nav-logo.png') }}" alt="Lawnly"></a>
             <h1>Lawnly</h1>
         </div>
 
         <div class="nav_elements">
             <ul>
-                <li><a class="active" href="./index.html">Home</a></li>
-                <li><a class="not-active" href="./Pages/about.html">About Us</a></li>
-                <li><a class="not-active" href="../pages/model.html">About The Model</a></li>
-                <li><a class="not-active" href="../pages/github.html">GitHub</a></li>
+                <li><a class="active" href="{{ url_for('index') }}">Home</a></li>
+                <li><a class="not-active" href="{{ url_for('about_us') }}">About Us</a></li>
+                <li><a class="not-active" href="{{ url_for('about_model') }}">About The Model</a></li>
+                <!-- <li><a class="not-active" href="../pages/github.html">GitHub</a></li> -->
+                <li><a class="not-active" href="https://github.com/Ahmed23Adel/Lawnly" target="_blank">GitHub</a></li>
             </ul>
         </div>
     </nav>
@@ -51,7 +58,11 @@
                     </div>
                 </div>   
             </div>
-                <button class="Colorize">Colorize</button>
+            <form method='POST' enctype='multipart/form-data'>
+                {{form.hidden_tag()}}
+                {{form.file()}}
+                {{form.submit()}}
+            </form>
         </div>
     </div>
 
