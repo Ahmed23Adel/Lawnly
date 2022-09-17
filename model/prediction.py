@@ -38,7 +38,7 @@ def save_samples(fake_img, original_name):
 # predict
 def colorize_img(file_path = "D:\self\Anime colorization\Web deployment\Lawnly\images\line_art.jpg"):
     #reading the image
-    image = Image.open(file_path)
+    image = Image.open(file_path).convert('RGB')
     image = trans(image)
     image.unsqueeze_(0)    
     output = generator(image)

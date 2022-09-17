@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/0c7c27ff53.js" crossorigin="anonymous"></script>
     <title>Lawnly - Home</title>
     <link rel="icon" type="images/x-icon" href="/images/nav-logo.png">
     <link rel="stylesheet" href="./main.css">
@@ -12,12 +13,16 @@
     <!-- <link rel="stylesheet" href="./main.css"> -->
     <!-- <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/skel.css') }}" /> -->
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/main.css') }}">
+    <script src="//cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script> 
+
 
 </head>
 
 <body>
-    <!-- Navigation Bar -->
+    <i id="theme-toggler" class="fa fa-sun" aria-hidden="true"></i>
+
     <nav>
         <div style="display:flex ;">
             <a class="nav-logo" href="{{ url_for('index') }}"><img src="{{ url_for('static', filename='images/nav-logo.png') }}" alt="Lawnly"></a>
@@ -31,11 +36,15 @@
                 <li><a class="not-active" href="{{ url_for('about_model') }}">About The Model</a></li>
                 <li><a class="not-active" href="https://github.com/Ahmed23Adel/Lawnly" target="_blank">GitHub</a></li>
             </ul>
+
         </div>
     </nav>
 
     <div class="BackGround_Image">
+        <div id="particles-js">
+        </div>
         <div class="index_Bg" >
+            <div id="particle-container"></div>
             <div class="main">
                 <div>
                     <label class="button" for="fileElem">Upload Image</label>
@@ -47,10 +56,11 @@
                         <div id="gallery">
                         </div>
                     </div>
+                    <label class="button" onclick="LineArtIt()">Turn To Line Art!</label>
                 </div>
 
                 <div>
-                    <a style="margin-left:35% ;" class="button" href="#" onclick="prepHref(this)" ><i class="fa fa-download"> </i> Download</a>
+                    <a style="margin-left:40% ;" class="button" href="#" onclick="prepHref(this)" ><i class="fa fa-download"> </i> Download</a>
                     <div class="drop-area">
                         <div id="gallery-out">
                         </div>
@@ -62,6 +72,121 @@
     </div>
 
 </body>
+
+<script>
+/* ---- particles.js config ---- */
+
+particlesJS("particle-container", {
+  "particles": {
+    "number": {
+      "value": 100,
+      "density": {
+        "enable": true,
+        "value_area": 800
+      }
+    },
+    "color": {
+      "value": ["#55d51c", "#5199e3", "#0ea351"]
+    },
+    "shape": {
+      "type": "circle",
+      "stroke": {
+        "width": 0,
+        "color": "#000000"
+      },
+      "polygon": {
+        "nb_sides": 6
+      },
+      "image": {
+        "src": "img/github.svg",
+        "width": 100,
+        "height": 100
+      }
+    },
+    "opacity": {
+      "value": 0.5,
+      "random": false,
+      "anim": {
+        "enable": false,
+        "speed": 1,
+        "opacity_min": 0.1,
+        "sync": false
+      }
+    },
+    "size": {
+      "value": 5,
+      "random": true,
+      "anim": {
+        "enable": false,
+        "speed": 40,
+        "size_min": 0.1,
+        "sync": false
+      }
+    },
+    "line_linked": {
+      "enable": true,
+      "distance": 150,
+      "color": "#ffffff",
+      "opacity": 0.4,
+      "width": 1
+    },
+    "move": {
+      "enable": true,
+      "speed": 1,
+      "direction": "none",
+      "random": true,
+      "straight": false,
+      "out_mode": "out",
+      "bounce": true,
+      "attract": {
+        "enable": false,
+        "rotateX": 600,
+        "rotateY": 1200
+      }
+    }
+  },
+  "interactivity": {
+    "detect_on": "canvas",
+    "events": {
+      "onhover": {
+        "enable": false,
+        "mode": "repulse"
+      },
+      "onclick": {
+        "enable": false,
+        "mode": "push"
+      },
+      "resize": true
+    },
+    "modes": {
+      "grab": {
+        "distance": 400,
+        "line_linked": {
+          "opacity": 1
+        }
+      },
+      "bubble": {
+        "distance": 400,
+        "size": 40,
+        "duration": 2,
+        "opacity": 8,
+        "speed": 3
+      },
+      "repulse": {
+        "distance": 200,
+        "duration": 0.4
+      },
+      "push": {
+        "particles_nb": 4
+      },
+      "remove": {
+        "particles_nb": 2
+      }
+    }
+  },
+  "retina_detect": true
+});
+</script>
 
 <script type="text/javascript"> 
     function prepHref(linkElement) { 
@@ -75,6 +200,18 @@
             linkElement.target="";
         }
     } 
+
+    const sun = 'fa-sun';
+    const moon ='fa-moon';
+    const toggler = document.getElementById('theme-toggler')
+    toggler.onclick = () => {
+        var body=document.body;
+        toggler.classList.toggle(sun);
+        toggler.classList.toggle(moon);
+        body.classList.toggle("dark-mode");
+    }
+
+
 </script>
 
 <script>
@@ -143,4 +280,104 @@
     }
 </script>
 
+<script>
+
+function dataURLtoFile(dataurl, filename) {
+     var arr = dataurl.split(','), mime = arr[0].match(/:(.*?);/)[1],
+     bstr = atob(arr[1]), n = bstr.length, u8arr = new Uint8Array(n);
+     while(n--){
+     u8arr[n] = bstr.charCodeAt(n);
+     }
+   return new File([u8arr], filename, );
+}
+
+function rgb_lrgb1(v) {
+    return (v /= 255) <= 0.04045 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4;
+}
+
+function lrgb_rgb1(v) {
+  return (v <= 0.0031308 ? 12.92 * v : 1.055 * (v ** (1 / 2.4)) - 0.055) * 255;
+}
+
+function LineArtIt() {
+    var myDiv = document.getElementById('gallery'); 
+    var img = myDiv.children[0]; 
+    if(img===undefined){
+        alert("Please Upload and Image")
+    }
+    else{
+        let Kx = [-1, 0, +1, -2, 0, +2, -1, 0, +1];
+        let Ky = [-1, -2, -1, 0, 0, 0, +1, +2, +1]
+        let width = img.naturalWidth;
+        let height = img.naturalHeight;
+        var canvas = document.createElement('canvas');
+        var context = canvas.getContext('2d');
+        canvas.width=width;
+        canvas.height=height;
+        context.drawImage(img, 0, 0, width, height);
+        kr = 0.2126; kg = 0.7152; kb = 0.0722;
+        let input = context.getImageData(0, 0, width, height);
+        const output = context.createImageData(width, height);
+
+        for (let y = 0, i = 0; y < height; ++y) {
+            for (let x = 0; x < width; ++x, i += 4) {
+                const r = rgb_lrgb1(input.data[i + 0]);
+                const g = rgb_lrgb1(input.data[i + 1]);
+                const b = rgb_lrgb1(input.data[i + 2]);
+                const a = lrgb_rgb1(kr * r + kg * g + kb * b);
+                output.data[i + 0] = 
+                output.data[i + 1] = 
+                output.data[i + 2] = a/8;
+                output.data[i + 3] = 255;
+            }
+        } 
+        context.putImageData(output, 0, 0);
+
+        input = context.getImageData(0, 0, width, height);
+        for (let y = 1, i = (width + 1) * 4; y < height - 1; ++y, i += 8) {
+            for (let x = 1; x < width - 1; ++x, i += 4) {
+            let rx = 0, ry = 0;
+            let gx = 0, gy = 0;
+            let bx = 0, by = 0;
+            for (let yk = y - 1, j = 0; yk <= y + 1; ++yk) {
+                for (let xk = x - 1; xk <= x + 1; ++xk, ++j) {
+                    let i = (yk * width + xk) << 2;
+                    rx += input.data[i + 0] * Kx[j];
+                    ry += input.data[i + 0] * Ky[j];
+                    gx += input.data[i + 1] * Kx[j];
+                    gy += input.data[i + 1] * Ky[j];
+                    bx += input.data[i + 2] * Kx[j];
+                    by += input.data[i + 2] * Ky[j];
+                }
+            }
+            output.data[i + 0] = (Math.hypot(rx, ry));
+            output.data[i + 1] = (Math.hypot(gx, gy));
+            output.data[i + 2] = (Math.hypot(bx, by));
+            output.data[i + 3] = 255;
+            }
+            context.putImageData(output, 0, 0, 0, y, width, 1);
+        }
+        let data=output.data;
+        for(let i = 0; i < data.length; i += 4) {
+            output.data[i] =     (255 - data[i]) / 1.1;
+            output.data[i + 1] = (255 - data[i + 1]) / 1.1;
+            output.data[i + 2] = (255 - data[i + 2]) / 1.1;
+            output.data[i + 3] = data[i + 3];
+        }
+        
+        context.putImageData(output, 0, 0);
+        var base64URI = canvas.toDataURL();
+        img.src = base64URI;
+
+        let reader = new FileReader();
+        var newImage=dataURLtoFile(base64URI,"file1.png")
+
+        var file = document.getElementById('fileElem');
+        const dataTransfer = new DataTransfer();
+
+        dataTransfer.items.add(newImage);
+        file.files = dataTransfer.files;
+    }
+}
+</script>
 </html>

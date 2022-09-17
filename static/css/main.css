@@ -4,6 +4,7 @@
   --font-main: "Galano Grotesque", sans-serif;
 
   /* Colors */
+  --solid-theme:#ffffff;
   --solid-black: #000000;
   --solid-white: #ffffff;
   --color-main: #55d51c;
@@ -65,13 +66,15 @@ nav {
 
 .nav_elements ul {
   display: flex;
+  font-size: large;
+  font-weight: 100;
   margin-right: 15%;
   justify-content: space-between;
 }
 
 
 .nav_elements ul .active {
-  font-weight: 600;
+  font-weight: 800;
   position: relative;
   /* Gradient Text */
   background-image: var(--color-grad-main);
@@ -285,7 +288,7 @@ nav {
 .BackGround_Image {
   height: 100%;
   /* background: url(../images/main-bg.jpg) no-repeat center; */
-  background-image: url(../images/main-bg.jpg); 
+  /*background-image: url(../images/main.png);*/
   -webkit-background-size: 100%;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -293,7 +296,6 @@ nav {
   align-content: center;
   align-self: center;
   align-items: center;
-  padding-left: 7rem;
   align-items: center;
   
 }
@@ -321,7 +323,6 @@ nav {
 
 .index_Bg {
   margin-top: 2.5rem;
-  min-height: 80rem;
   width: 90%;
   display: block;
   align-items: center;
@@ -338,7 +339,7 @@ nav {
   align-self: center;
   height:auto;
   margin: auto auto;
-  margin-left: 3%;
+  margin-left: 9%;
   margin-top: 3%;
   width: calc((80vw));
   justify-content: space-between;
@@ -348,7 +349,7 @@ nav {
   width: 250px;
   height: 200px;
   padding: 10px;
-  border: 2px solid #0ea351;
+  border: 2px solid var(--color-main);
   border-radius: 3%;
 }
 
@@ -356,32 +357,8 @@ nav {
 align-items: center;
 }
 
-.outputimg {
-  margin-top: 5%;
-  width: 80%;
-  align-self: center;
-  align-content: center;
-  height:calc((5vw));
-  width: calc((10vw));
-  border-radius: 3%;
-}
-
-.Colorize{
-  padding: 10px;
-  margin: auto auto;
-  width: 200px;
-  height: 70px;
-  margin-top: 5%;
-  cursor: pointer;
-  margin-left: 41.5%;
-  font-size: larger;
-  font-weight: 900;
-  border-radius: 10px;
-  border: 2px solid #55d51c;
-}
-
 #drop-area {
-  border: 3px dashed #55d51c;
+  border: 3px dashed var(--color-main);
   border-radius: 20px;
   width: 550px;
   height: 500px;
@@ -401,7 +378,7 @@ align-items: center;
   height: 100%;
 }
 .drop-area {
-  border: 3px dashed #55d51c;
+  border: 3px dashed var(--color-green);
   border-radius: 20px;
   width: 550px;
   height: 500px;
@@ -412,7 +389,7 @@ align-items: center;
 }
 
 #drop-area.highlight {
-  border-color: #0ea351;
+  border-color: var(--color-main);
 }
 
 .my-form {
@@ -447,20 +424,41 @@ align-items: center;
   margin-left:3.5%;
   vertical-align: middle;
 }
+.dark-mode {
+  background-color: #312f32;
+  color: white;
+  /* Colors */
+  --solid-theme:#312f32;
+  --solid-black: #ffffff;
+  --solid-white: #000000;
+  --color-main: #61ff1d;
+  --color-grey: #f1f1f1;
+  --color-green: #37b871;
+
+  --linear-grad-left: #56a6f7;
+  --linear-grad-right: #81f84e;
+  --color-grad-main: linear-gradient(to right,
+    var(--linear-grad-left),
+    var(--linear-grad-right)
+  )
+  
+}
 .button {
   display: inline-block;
   padding: 10px;
-  margin-left: 190px;
+  margin-left: 31.5%;
+  margin-top: 2%;
   margin-bottom: 2%;
   cursor: pointer;
   text-align: center;
   font-size: large;
   border-radius: 5px;
-  border: 2px solid #55d51c;
+  border: 2px solid var(--color-main);
 }
 .button:hover {
-  background: #ddd;
-  border-color: #0ea351;
+  background: var(--color-green);
+  border-color: var(--color-main);
+  color: var(--solid-white);
 }
 #fileElem {
   display: none;
@@ -480,17 +478,40 @@ h1{
 
 .submit_button{
   padding: 10px;
-  margin: auto auto;
   width: 200px;
   height: 70px;
   margin-top: 5%;
   cursor: pointer;
   margin-left: 43.5%;
+  color: var(--solid-black);
+  background-color: transparent;
   font-size: larger;
   font-weight: 900;
   border-radius: 10px;
-  border: 2px solid #55d51c;
+  border: 2px solid var(--color-main);
+}
+.submit_button:hover{
+  background: var(--color-green);
+  border-color: var(--color-main);
+  color: var(--solid-white);
 }
 /****************************************************************************************************************************/
 /****************************************************************************************************************************/
-/* Other Classes */
+#particle-container {
+  z-index: -1;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+#theme-toggler {
+  position: absolute;
+  top: 4.5%;
+  right: 1%;
+  padding: 15px 20px;
+  font-size: 30px;
+  background: var(--solid-theme);
+  color: var(--solid-black);
+  cursor: pointer;
+  border-radius: 50%;
+}
