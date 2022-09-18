@@ -1,6 +1,5 @@
 from __future__ import print_function # In python 2.7
 from flask import Flask, request, render_template, redirect, flash, send_from_directory, url_for
-import pickle
 from model.prediction import colorize_img,colorize_button_clicked
 from flask_uploads import UploadSet, IMAGES, configure_uploads
 from flask_wtf import FlaskForm
