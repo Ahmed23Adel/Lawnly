@@ -1,15 +1,18 @@
 /* Root */
 :root {
   /* Fonts */
-  --font-main: "Galano Grotesque", sans-serif;
+  --font-main: "Garamond";
+  font-size: large;
+  font-weight: 200;
 
   /* Colors */
+  color: black;
   --solid-theme:#ffffff;
   --solid-black: #000000;
   --solid-white: #ffffff;
-  --color-main: #55d51c;
+  --color-main: #66ce3a;
   --color-grey: #f1f1f1;
-  --color-green: #0ea351;
+  --color-green: #269b03;
 
   --linear-grad-left: #5199e3;
   --linear-grad-right: #55d51c;
@@ -66,8 +69,8 @@ nav {
 
 .nav_elements ul {
   display: flex;
-  font-size: large;
-  font-weight: 100;
+  font-size: larger;
+  font-weight: 300;
   margin-right: 15%;
   justify-content: space-between;
 }
@@ -306,10 +309,9 @@ nav {
 }
 
 .Wrapper {
-  margin-top: 2.5rem;
-  min-height: 80rem;
-  width: 90%;
-  background-color: rgba(65, 56, 56, 0.7);
+  margin: auto;width: 70%;padding: 10px;
+  margin-top: 4%;
+  background-color: rgba(221, 209, 209, 0.5);
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -428,16 +430,17 @@ align-items: center;
   background-color: #312f32;
   color: white;
   /* Colors */
+  
   --solid-theme:#312f32;
   --solid-black: #ffffff;
   --solid-white: #000000;
-  --color-main: #61ff1d;
+  --color-main: #ca1ef5;
   --color-grey: #f1f1f1;
-  --color-green: #37b871;
+  --color-green: #9e5ff0;
 
   --linear-grad-left: #56a6f7;
-  --linear-grad-right: #81f84e;
-  --color-grad-main: linear-gradient(to right,
+  --linear-grad-right: #920b9e;
+  --color-grad-main: linear-gradient(to left,
     var(--linear-grad-left),
     var(--linear-grad-right)
   )
@@ -464,8 +467,8 @@ align-items: center;
   display: none;
 }
 h1{
-  /* margin-top: 19%; */
-  margin-left: 1%;
+  margin-top: 19%;
+  margin-left: -11%;
   text-decoration: none;
   background-image: var(--color-grad-main);
   background-size: 100%;
@@ -482,7 +485,7 @@ h1{
   height: 70px;
   margin-top: 5%;
   cursor: pointer;
-  margin-left: 43.5%;
+  margin-left: 46.5%;
   color: var(--solid-black);
   background-color: transparent;
   font-size: larger;
@@ -499,7 +502,10 @@ h1{
 /****************************************************************************************************************************/
 #particle-container {
   z-index: -1;
-  position: absolute;
+  position: fixed;
+  background-size: cover;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
   width: 100%;
   height: 100%;
 }

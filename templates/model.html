@@ -4,18 +4,28 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=0.9">
+    <link rel="icon" type="images/x-icon" href="{{ url_for('static', filename='images/newLogo.png') }}">
     <title>Lawnly - About The Model</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/model.css') }}">
-    <link rel="icon" type="images/x-icon" href="/images/nav-logo.png">
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="https://kit.fontawesome.com/0c7c27ff53.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script> 
+    <style>h1{
+        margin: auto;
+    }</style>
 </head>
-<body>
-    <!-- Navigation Bar -->
+<body class="dark-mode">
+    <i id="theme-toggler" class="fa fa-sun" aria-hidden="true"></i>
     <nav>
-
-        <a class="nav-logo" href="../index.html"><img src="{{ url_for('static', filename='images/nav-logo.png') }}" alt="Lawnly"></a>
+        <div style="display:flex ;">
+            <a class="nav-logo" href="{{ url_for('index') }}"><img src="{{ url_for('static', filename='images/newLogo.png') }}" alt="Lawnly"></a>
+            <h1>Lawnly</h1>
+        </div>
 
         <div class="nav_elements">
             <ul>
@@ -27,8 +37,8 @@
         </div>
     </nav>
     <div class="BackGround_Image">
-        <div class="Wrapper" >
-            <!--Body of the model page-->
+        <div id="particle-container"></div>
+        <div class="Wrapper">
             <div class="links-container">
  
                 <!-- The href attribute of anchor
@@ -217,7 +227,7 @@
             
             <div id="gen-net"> 
                 <br/> <br/>
-                <h1 class="introduction">generator network</h1>
+                <h1 class="introduction">Generator network</h1>
                 <br/>
                 <h2 class="sub-header">Swish layer</h2>
                 <div class="swish-layer-div">
@@ -271,5 +281,254 @@
 
     
 </body>
+
+<script>
+    /* ---- particles.js config ---- */ 
+    particlesJS("particle-container", {
+      "particles": {
+        "number": {
+          "value": 200,
+          "density": {
+            "enable": true,
+            "value_area": 800
+          }
+        },
+        "color": {
+          "value": ["#ab0bd3", "#cf18fd", "#ef3aff"]
+        },
+        "shape": {
+          "type": "circle",
+          "stroke": {
+            "width": 0,
+            "color": "#000000"
+          },
+          "polygon": {
+            "nb_sides": 6
+          },
+          "image": {
+            "src": "img/github.svg",
+            "width": 100,
+            "height": 100
+          }
+        },
+        "opacity": {
+          "value": 0.5,
+          "random": false,
+          "anim": {
+            "enable": false,
+            "speed": 1,
+            "opacity_min": 0.1,
+            "sync": false
+          }
+        },
+        "size": {
+          "value": 5,
+          "random": true,
+          "anim": {
+            "enable": false,
+            "speed": 40,
+            "size_min": 0.1,
+            "sync": false
+          }
+        },
+        "line_linked": {
+          "enable": true,
+          "distance": 150,
+          "color": "#4bfa00",
+          "opacity": 0.4,
+          "width": 1
+        },
+        "move": {
+          "enable": true,
+          "speed": 1,
+          "direction": "none",
+          "random": true,
+          "straight": false,
+          "out_mode": "out",
+          "bounce": true,
+          "attract": {
+            "enable": false,
+            "rotateX": 600,
+            "rotateY": 1200
+          }
+        }
+      },
+      "interactivity": {
+        "detect_on": "canvas",
+        "events": {
+          "onhover": {
+            "enable": false,
+            "mode": "repulse"
+          },
+          "onclick": {
+            "enable": false,
+            "mode": "push"
+          },
+          "resize": true
+        },
+        "modes": {
+          "grab": {
+            "distance": 400,
+            "line_linked": {
+              "opacity": 1
+            }
+          },
+          "bubble": {
+            "distance": 400,
+            "size": 40,
+            "duration": 2,
+            "opacity": 8,
+            "speed": 3
+          },
+          "repulse": {
+            "distance": 200,
+            "duration": 0.4
+          },
+          "push": {
+            "particles_nb": 4
+          },
+          "remove": {
+            "particles_nb": 2
+          }
+        }
+      },
+      "retina_detect": true
+    });
+    function setParticles(color,colorArr) {
+        particlesJS("particle-container", {
+      "particles": {
+        "number": {
+          "value": 100,
+          "density": {
+            "enable": true,
+            "value_area": 800
+          }
+        },
+        "color": {
+          "value": colorArr
+        },
+        "shape": {
+          "type": "circle",
+          "stroke": {
+            "width": 0,
+            "color": "#000000"
+          },
+          "polygon": {
+            "nb_sides": 6
+          },
+          "image": {
+            "src": "img/github.svg",
+            "width": 100,
+            "height": 100
+          }
+        },
+        "opacity": {
+          "value": 0.5,
+          "random": false,
+          "anim": {
+            "enable": false,
+            "speed": 1,
+            "opacity_min": 0.1,
+            "sync": false
+          }
+        },
+        "size": {
+          "value": 5,
+          "random": true,
+          "anim": {
+            "enable": false,
+            "speed": 40,
+            "size_min": 0.1,
+            "sync": false
+          }
+        },
+        "line_linked": {
+          "enable": true,
+          "distance": 150,
+          "color": color,
+          "opacity": 0.4,
+          "width": 1
+        },
+        "move": {
+          "enable": true,
+          "speed": 1,
+          "direction": "none",
+          "random": true,
+          "straight": false,
+          "out_mode": "out",
+          "bounce": true,
+          "attract": {
+            "enable": false,
+            "rotateX": 600,
+            "rotateY": 1200
+          }
+        }
+      },
+      "interactivity": {
+        "detect_on": "canvas",
+        "events": {
+          "onhover": {
+            "enable": false,
+            "mode": "repulse"
+          },
+          "onclick": {
+            "enable": false,
+            "mode": "push"
+          },
+          "resize": true
+        },
+        "modes": {
+          "grab": {
+            "distance": 400,
+            "line_linked": {
+              "opacity": 1
+            }
+          },
+          "bubble": {
+            "distance": 400,
+            "size": 40,
+            "duration": 2,
+            "opacity": 8,
+            "speed": 3
+          },
+          "repulse": {
+            "distance": 200,
+            "duration": 0.4
+          },
+          "push": {
+            "particles_nb": 4
+          },
+          "remove": {
+            "particles_nb": 2
+          }
+        }
+      },
+      "retina_detect": true
+    });
+    }
+    
+</script>
+
+<script> 
+    const sun = 'fa-sun';
+    const moon ='fa-moon';
+    const toggler = document.getElementById('theme-toggler');
+    const wrapper = document.getElementsByClassName("Wrapper");;
+    toggler.onclick = () => {
+        var body=document.body;
+        if(toggler.classList.contains(sun)){
+            setParticles("#560466",["#55d51c", "#5199e3", "#0ea351"]);
+            wrapper[0].style.backgroundColor="rgba(65, 56, 56, 0.7)";
+        }
+        else{
+            setParticles("#4bfa00",["#ab0bd3", "#cf18fd", "#ef3aff"]);
+            wrapper[0].style.backgroundColor="rgba(221, 209, 209, 0.5)";
+        }
+        toggler.classList.toggle(sun);
+        toggler.classList.toggle(moon);
+        body.classList.toggle("dark-mode");
+    }
+</script>
+
 
 </html>
