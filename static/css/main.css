@@ -391,7 +391,7 @@ align-items: center;
 }
 
 #drop-area.highlight {
-  border-color: var(--color-main);
+  border-color: var(--color-black);
 }
 
 .my-form {

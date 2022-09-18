@@ -1,26 +1,23 @@
+
 .introduction{
     font-family: Arial;
     font-style: normal;
-    color: wheat;
     font-size: 50px;
 }
 .sub-header{
     font-family: Arial;
     font-style: normal;
-    color: #f8eeda;
 }
 
 .sample-results{
     font-family: Arial;
     font-style: normal;
-    color: wheat;
     /* font-size: 50px; */
 }
 
 .intro-body{
     font-size: 17px;
     font-family: Arial;
-    color: white;
     margin-top: 8px;
     line-height: 1.5;
 
@@ -47,7 +44,6 @@
 }
 
 .sample-desc{
-    color: white;
     display: block;
     text-align: center
 }
@@ -72,7 +68,6 @@
     margin: 16px;
     font-size: 17px;
     font-family: Arial;
-    color: white;
     line-height: 1.5;
 }
 .swish-layer-img{
