@@ -60,4 +60,4 @@ jobs:
         with:
           app-name: 'LawnlyAnimeColorization'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_3DC064126DA4429FA969DC2889981C6E }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_6025430C920D4079BB2ADB1C0F6D4572 }}
