@@ -5,17 +5,47 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="images/x-icon" href="{{ url_for('static', filename='images/newLogo.png') }}">
     <title>Lawnly - About Us</title>
-    <link rel="icon" type="images/x-icon" href="/images/nav-logo.png">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/about_us.css') }}">
     <script src="https://kit.fontawesome.com/0c7c27ff53.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/tsparticles@1.16.2/dist/tsparticles.min.js" integrity="sha256-2Sly/Hf9UP7YBu6LEPpn/6rxMZR5EeGq89mBa4G5+YA=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script> 
+
+    <script>
+      function detectTheme(){
+
+          if (window.matchMedia) {
+              const sun = 'fa-sun';
+              const moon ='fa-moon';
+              const toggler = document.getElementById('theme-toggler');
+              var body=document.body;
+              
+              if(!window.matchMedia('(prefers-color-scheme: dark)').matches || localStorage.getItem("theme")=="light"){
+                setParticles("#560466",["#55d51c", "#5199e3", "#0ea351"], localStorage.getItem("animate")=="spin");
+                body.classList.toggle("dark-mode");
+                toggler.classList.toggle(sun);
+                toggler.classList.toggle(moon);
+              }
+              else{
+                setParticles("#4bfa00",["#ab0bd3", "#cf18fd", "#ef3aff"], localStorage.getItem("animate")=="spin");
+                localStorage.setItem("theme", "dark");
+              }
+            }
+            
+            const animate = document.getElementById('animate');
+            const spin = 'fa-spin';
+            if(localStorage.getItem("animate")=="stop"){
+              animate.classList.remove(spin);
+            }
+      }
+    </script>
 </head>
-<body class="dark-mode">
-    <i id="theme-toggler" class="fa fa-sun" aria-hidden="true"></i>
+
+<body class="dark-mode" onload="detectTheme()">
+    <i id="theme-toggler" title="Control Theme" class="fa fa-sun" aria-hidden="true"></i>
+    <i id="animate" title="Control Animation" class="fa fa-spinner fa-spin"></i>
     <nav>
         <div style="display:flex ;">
             <a class="nav-logo" href="{{ url_for('index') }}"><img src="{{ url_for('static', filename='images/newLogo.png') }}" alt="Lawnly"></a>
@@ -70,248 +100,178 @@
 
 
 <script>
-    /* ---- particles.js config ---- */ 
-    particlesJS("particle-container", {
-      "particles": {
-        "number": {
-          "value": 100,
-          "density": {
-            "enable": true,
-            "value_area": 800
+  /* ---- tsparticles config ---- */
+  tsParticles.load("particle-container",
+      {
+      fpsLimit: 60,
+      backgroundMode: {
+        enable: true,
+        zIndex: 0
+      },
+      particles: {
+        number: {
+          value: 200,
+          density: {
+            enable: true,
+            area: 800
           }
         },
-        "color": {
-          "value": ["#ab0bd3", "#cf18fd", "#ef3aff"]
-        },
-        "shape": {
-          "type": "circle",
-          "stroke": {
-            "width": 0,
-            "color": "#000000"
-          },
-          "polygon": {
-            "nb_sides": 6
-          },
-          "image": {
-            "src": "img/github.svg",
-            "width": 100,
-            "height": 100
+        color: {
+          value: ["#ab0bd3", "#cf18fd", "#ef3aff"],
+          animation: {
+            enable: true,
+            speed: 1,
+            sync: true
           }
         },
-        "opacity": {
-          "value": 0.5,
-          "random": false,
-          "anim": {
-            "enable": false,
-            "speed": 1,
-            "opacity_min": 0.1,
-            "sync": false
+        shape: {
+          type: "circle",
+          options: {
+            polygon: {
+              sides: 6
+            },
+            image: {
+              src: "https://cdn.matteobruni.it/images/particles/github.svg",
+              width: 100,
+              height: 100
+            }
           }
         },
-        "size": {
-          "value": 5,
-          "random": true,
-          "anim": {
-            "enable": false,
-            "speed": 40,
-            "size_min": 0.1,
-            "sync": false
+        stroke: {
+          width: 0
+        },
+        opacity: {
+          value: 0.5,
+          random: false,
+          animation: {
+            enable: false,
+            speed: 1,
+            minimumValue: 0.1,
+            sync: false
           }
         },
-        "line_linked": {
-          "enable": true,
-          "distance": 150,
-          "color": "#4bfa00",
-          "opacity": 0.4,
-          "width": 1
+        size: {
+          value: 5,
+          random: true,
+          animation: {
+            enable: false,
+            speed: 40,
+            minimumValue: 0.1,
+            sync: false
+          }
         },
-        "move": {
-          "enable": true,
-          "speed": 1,
-          "direction": "none",
-          "random": true,
-          "straight": false,
-          "out_mode": "out",
-          "bounce": true,
-          "attract": {
-            "enable": false,
-            "rotateX": 600,
-            "rotateY": 1200
+        links: {
+          enable: true,
+          distance: 150,
+          color: "#4bfa00",
+          opacity: 0.7,
+          width: 1
+        },
+        move: {
+          enable: true,
+          speed: 1,
+          direction: "none",
+          random: true,
+          straight: false,
+          outMode: "bounce",
+          attract: {
+            enable: false,
+            rotateX: 600,
+            rotateY: 1200
           }
         }
       },
-      "interactivity": {
-        "detect_on": "canvas",
-        "events": {
-          "onhover": {
-            "enable": false,
-            "mode": "repulse"
+      interactivity: {
+        detectsOn: "canvas",
+        events: {
+          onHover: {
+            enable: false,
+            mode: "repulse"
           },
-          "onclick": {
-            "enable": false,
-            "mode": "push"
+          onClick: {
+            enable: true,
+            mode: "push"
           },
-          "resize": true
+          resize: false
         },
-        "modes": {
-          "grab": {
-            "distance": 400,
-            "line_linked": {
-              "opacity": 1
+        modes: {
+          grab: {
+            distance: 400,
+            links: {
+              opacity: 1
             }
           },
-          "bubble": {
-            "distance": 400,
-            "size": 40,
-            "duration": 2,
-            "opacity": 8,
-            "speed": 3
+          bubble: {
+            distance: 400,
+            size: 40,
+            duration: 2,
+            opacity: 0.8
           },
-          "repulse": {
-            "distance": 200,
-            "duration": 0.4
+          repulse: {
+            distance: 200
           },
-          "push": {
-            "particles_nb": 4
+          push: {
+            quantity: 4
           },
-          "remove": {
-            "particles_nb": 2
+          remove: {
+            quantity: 2
           }
         }
       },
-      "retina_detect": true
-    });
-    function setParticles(color,colorArr) {
-        particlesJS("particle-container", {
-      "particles": {
-        "number": {
-          "value": 100,
-          "density": {
-            "enable": true,
-            "value_area": 800
-          }
-        },
-        "color": {
-          "value": colorArr
-        },
-        "shape": {
-          "type": "circle",
-          "stroke": {
-            "width": 0,
-            "color": "#000000"
-          },
-          "polygon": {
-            "nb_sides": 6
-          },
-          "image": {
-            "src": "img/github.svg",
-            "width": 100,
-            "height": 100
-          }
-        },
-        "opacity": {
-          "value": 0.5,
-          "random": false,
-          "anim": {
-            "enable": false,
-            "speed": 1,
-            "opacity_min": 0.1,
-            "sync": false
-          }
-        },
-        "size": {
-          "value": 5,
-          "random": true,
-          "anim": {
-            "enable": false,
-            "speed": 40,
-            "size_min": 0.1,
-            "sync": false
-          }
-        },
-        "line_linked": {
-          "enable": true,
-          "distance": 150,
-          "color": color,
-          "opacity": 0.4,
-          "width": 1
-        },
-        "move": {
-          "enable": true,
-          "speed": 1,
-          "direction": "none",
-          "random": true,
-          "straight": false,
-          "out_mode": "out",
-          "bounce": true,
-          "attract": {
-            "enable": false,
-            "rotateX": 600,
-            "rotateY": 1200
-          }
-        }
-      },
-      "interactivity": {
-        "detect_on": "canvas",
-        "events": {
-          "onhover": {
-            "enable": false,
-            "mode": "repulse"
-          },
-          "onclick": {
-            "enable": false,
-            "mode": "push"
-          },
-          "resize": true
-        },
-        "modes": {
-          "grab": {
-            "distance": 400,
-            "line_linked": {
-              "opacity": 1
-            }
-          },
-          "bubble": {
-            "distance": 400,
-            "size": 40,
-            "duration": 2,
-            "opacity": 8,
-            "speed": 3
-          },
-          "repulse": {
-            "distance": 200,
-            "duration": 0.4
-          },
-          "push": {
-            "particles_nb": 4
-          },
-          "remove": {
-            "particles_nb": 2
-          }
-        }
-      },
-      "retina_detect": true
-    });
-    }
-    
+      detectRetina: true,
+    })
+  function setParticles(color, colorArr,flag){
+    const particles = tsParticles.domItem(0);
+    const options = particles.options;
+    options.particles.color.value = colorArr;
+    options.particles.number.value = 200;
+    options.particles.links.color = color;
+    options.particles.move.enable = flag;
+    particles.refresh();
+  }
 </script>
 
 <script> 
     const sun = 'fa-sun';
     const moon ='fa-moon';
     const toggler = document.getElementById('theme-toggler')
+    const spin = 'fa-spin';
+    const animate = document.getElementById('animate')
+
     toggler.onclick = () => {
         var body=document.body;
         if(toggler.classList.contains(sun)){
-            setParticles("#560466",["#55d51c", "#5199e3", "#0ea351"]);
+            setParticles("#560466",["#55d51c", "#5199e3", "#0ea351"], animate.classList.contains(spin));
+            localStorage.setItem("theme", "light");
         }
         else{
-            setParticles("#4bfa00",["#ab0bd3", "#cf18fd", "#ef3aff"]);
+            setParticles("#4bfa00",["#ab0bd3", "#cf18fd", "#ef3aff"], animate.classList.contains(spin));
+            localStorage.setItem("theme", "dark");
+        }
+        if(localStorage.getItem("animate")=="stop"){
+          animate.classList.remove(spin);
+
         }
         toggler.classList.toggle(sun);
         toggler.classList.toggle(moon);
         body.classList.toggle("dark-mode");
-    }
+    };
+
+    animate.onclick = () => {
+        const particles = tsParticles.domItem(0);
+        const options = particles.options;
+        if(animate.classList.contains(spin)){
+            localStorage.setItem("animate", "stop");
+            animate.classList.remove(spin);
+            options.particles.move.enable = false;
+        }
+        else{
+            localStorage.setItem("animate", "spin");
+            animate.classList.add(spin);
+            options.particles.move.enable = true;
+            particles.refresh();
+        }
+    };
 </script>
 
 
