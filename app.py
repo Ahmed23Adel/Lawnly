@@ -41,7 +41,7 @@ def index():
         file = request.files['file1'] # First grab the file
         filename_unq = str(uuid.uuid4())
         filename_unq = str(filename_unq+"_"+file.filename)
-        file_full_name = "{}\{}\{}".format(os.path.abspath(os.path.dirname(__file__)),app.config['UPLOAD_FOLDER'],secure_filename(str(filename_unq)))
+        file_full_name = os.path.join(os.path.abspath(os.path.dirname(__file__)),app.config['UPLOAD_FOLDER'],secure_filename(str(filename_unq)))
         file.save(file_full_name) # Then save the file
         colorize_img(file_full_name)
         gen_file_path = filename_unq.replace(".","_gen.")
