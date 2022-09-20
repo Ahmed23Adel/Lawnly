@@ -60,4 +60,4 @@ jobs:
         with:
           app-name: 'LawnlyFree'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_7BC474FE7D754F7A9660ED0E64F69DAD }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_E3486AAA824246B7A0FBF4FF39301588 }}
