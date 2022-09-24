@@ -10,15 +10,13 @@
     <link rel="icon" type="images/x-icon" href="{{ url_for('static', filename='images/newLogo.png') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/main.css') }}">
-    <script src="{{url_for('static', filename='js/scripts.js')}}"></script>
+    <script src="{{url_for('static', filename='js/main.js')}}"></script>
     <script src="https://cdn.jsdelivr.net/npm/tsparticles@1.16.2/dist/tsparticles.min.js" integrity="sha256-2Sly/Hf9UP7YBu6LEPpn/6rxMZR5EeGq89mBa4G5+YA=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script> 
 </head>
 
-<body class="dark-mode" onload="detectTheme()">
-    <i id="theme-toggler" title="Control Theme" class="fa fa-sun" aria-hidden="true" onclick="toggler()"></i>
-    <i id="animate" title="Control Animation" class="fa fa-spinner fa-spin" onclick="Animate()"></i>
+<body class="dark-mode" onload="detectTheme()" onresize="setupfont()">
     <nav>
         <div style="display:flex ;">
             <a class="nav-logo" href="{{ url_for('index') }}"><img src="{{ url_for('static', filename='images/newLogo.png') }}" alt="Lawnly"></a>
@@ -31,37 +29,39 @@
                 <li><a class="not-active" href="{{ url_for('about_us') }}">About Us</a></li>
                 <li><a class="not-active" href="{{ url_for('about_model') }}">About The Model</a></li>
                 <li><a class="not-active" href="https://github.com/Ahmed23Adel/Lawnly" target="_blank">GitHub</a></li>
+                <li><a id="Bug" title="Report Bug or Suggestion" target="_blank"  href="https://forms.gle/8UVbSL1FS5ghQU3g6"><i class="fa fa-bug"></i></a></li>
+                <li><i id="animate" title="Control Animation" class="fa fa-spinner fa-spin" onclick="Animate()"></i></li>
+                <li><i id="theme-toggler" title="Control Theme" class="fa fa-sun" aria-hidden="true" onclick="toggler()"></i></li>
             </ul>
-
         </div>
     </nav>
-
     <div class="BackGround_Image">
         <div class="index_Bg" >
             <div id="particle-container"></div>
             <div class="main">
-                <div>
-                    <label class="button" for="fileElem">Upload Image</label>
+                <div class="drpdiv">
+                    <label title="Upload An Image To Colorize" class="button" for="fileElem">Upload <i class="fa fa-upload" aria-hidden="true"></i></label>
                     <div id="drop-area">
-                        <h4 id="placeholder">Upload Preferably Grayscale Images</h4>
                         <form id="myform" class="my-form" method='POST' enctype='multipart/form-data'>
                           <input type="file" id="fileElem" name="file1" multiple accept="image/*" onchange="handleFiles(this.files)" required>
                         </form>
                         <div id="gallery">
+                          <h4 id="placeholder">Upload Preferably Line Art</h4>
                         </div>
                     </div>
-                    <label style="margin-left:29%;" class="button" onclick="LineArtIt()">Turn To Line Art!</label>
+                    <label  class="button" onclick="LineArtIt()" title="Turn A Colored Image To Line Art">Turn To Line Art! <i class="fa fa-pencil" aria-hidden="true"></i></label>
                 </div>
 
-                <div>
-                    <a style="margin-left:40% ;" class="button" href="#" onclick="prepHref(this)" ><i class="fa fa-download"> </i> Download</a>
+                <div class="drpdiv">
+                    <a title="Download Generated Image"  class="button" href="#" onclick="prepHref()" ><i class="fa fa-download"> </i> Download</a>
                     <div class="drop-area">
                         <div id="gallery-out">
                         </div>
                     </div>
+                    <label  class="pseudobtn">Turn To Line Art!</label>
                 </div> 
             </div>
-            <button class="submit_button" type="submit" form="myform" value="Submit">Colorize</button>  
+            <button title="Colorize The Image" class="submit_button" type="submit" form="myform" value="Submit">Colorize <i class="fa fa-paint-brush" aria-hidden="true"></i></button>  
         </div>
     </div>
 
@@ -71,14 +71,14 @@
     /* ---- tsparticles config ---- */
     tsParticles.load("particle-container",
       {
-      fpsLimit: 60,
+      fpsLimit: 30,
       backgroundMode: {
         enable: true,
         zIndex: 0
       },
       particles: {
         number: {
-          value: 200,
+          value: 100,
           density: {
             enable: true,
             area: 800
@@ -123,7 +123,7 @@
           random: true,
           animation: {
             enable: false,
-            speed: 40,
+            speed: 10,
             minimumValue: 0.1,
             sync: false
           }
@@ -240,11 +240,10 @@
     }
 
     function previewFile(file) {
+      const acceptedImageTypes = ['image/jpg','image/jpeg', 'image/png'];   
+      if(file && acceptedImageTypes.includes(file['type'])){
         let imgs= document.getElementById('gallery');
         imgs.innerHTML = '';
-        let placeholder= document.getElementById('placeholder');
-            placeholder.style.display= 'none' ;
-
         let reader = new FileReader()
         reader.readAsDataURL(file)
         reader.onloadend = function() {
@@ -253,6 +252,10 @@
             img.src = reader.result
             imgs.appendChild(img)
         }
+      }   
+      else{
+        alert("Please Upload An Image Of Type JPG,JPEG Or PNG");
+      }  
     }
 </script>
 

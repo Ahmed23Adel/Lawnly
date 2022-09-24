@@ -1,5 +1,3 @@
-
-
 function detectTheme(){
     
     if (window.matchMedia) {
@@ -27,6 +25,20 @@ function detectTheme(){
     const spin = 'fa-spin';
     if(localStorage.getItem("animate")=="stop"){
       animate.classList.remove(spin);
+    }
+    
+    const width  = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+    if(width<1024&&width>800){
+        document.body.style.setProperty("font-size","2vw");
+    }
+    else if(width<800&&width>500){
+        document.body.style.setProperty("font-size","3vw");
+    }
+    else if(width<500&&width>350){
+        document.body.style.setProperty("font-size","4vw");
+    }
+    else{
+        document.body.style.setProperty("font-size","1.5vw");
     }
 }
 
@@ -133,15 +145,21 @@ function LineArtIt() {
     }
 }
 
-function prepHref(linkElement) { 
+function prepHref() { 
     var myDiv = document.getElementById('gallery-out'); 
     var myImage = myDiv.children[0]; 
     if(myImage!==undefined){
-        linkElement.href = myImage.src; 
-        linkElement.target="_blank";
+        let source=myImage.src;
+        const fileName = source.split('/').pop();
+        var el = document.createElement("a");
+        el.setAttribute("href", source);
+        el.setAttribute("download", fileName);
+        document.body.appendChild(el);
+        el.click();
+        el.remove();
     }
     else{
-        linkElement.target="";
+        return;
     }
 } 
 
@@ -195,11 +213,18 @@ function setParticles(color, colorArr,flag){
   particles.refresh();
 }
 
-function setupprofs(){
-    let width = screen.width;
-    let profs=document.getElementById('profs');
-    if(width<1250){
-        profs.setAttribute("flex-wrap","wrap");
-        profs.setAttribute("margin-left","30%")
+function setupfont(){
+    const width  = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+    if(width<1024&&width>800){
+        document.body.style.setProperty("font-size","2vw");
     }
-} 
+    else if(width<800&&width>500){
+        document.body.style.setProperty("font-size","3vw");
+    }
+    else if(width<500&&width>350){
+        document.body.style.setProperty("font-size","4vw");
+    }
+    else{
+        document.body.style.setProperty("font-size","1.5vw");
+    }
+}

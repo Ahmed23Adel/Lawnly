@@ -7,7 +7,7 @@
     <link rel="icon" type="images/x-icon" href="{{ url_for('static', filename='images/newLogo.png') }}">
     <title>Uploaded</title>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/main.css') }}">
-    <script src="{{url_for('static', filename='js/scripts.js')}}"></script>
+    <script src="{{url_for('static', filename='js/main.js')}}"></script>
     <script src="https://kit.fontawesome.com/0c7c27ff53.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://cdn.jsdelivr.net/npm/tsparticles@1.16.2/dist/tsparticles.min.js" integrity="sha256-2Sly/Hf9UP7YBu6LEPpn/6rxMZR5EeGq89mBa4G5+YA=" crossorigin="anonymous"></script>
@@ -15,9 +15,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script> 
 </head>
 
-<body class="dark-mode" onload="detectTheme()">
-    <i id="theme-toggler" title="Control Theme" class="fa fa-sun" aria-hidden="true" onclick="toggler()"></i>
-    <i id="animate" title="Control Animation" class="fa fa-spinner fa-spin" onclick="Animate()"></i>
+<body class="dark-mode" onload="detectTheme()" onresize="setupfont()">
     <nav>
         <div style="display:flex ;">
             <a class="nav-logo" href="{{ url_for('index') }}"><img src="{{ url_for('static', filename='images/newLogo.png') }}" alt="Lawnly"></a>
@@ -30,6 +28,9 @@
                 <li><a class="not-active" href="{{ url_for('about_us') }}">About Us</a></li>
                 <li><a class="not-active" href="{{ url_for('about_model') }}">About The Model</a></li>
                 <li><a class="not-active" href="https://github.com/Ahmed23Adel/Lawnly" target="_blank">GitHub</a></li>
+                <li><a id="Bug" title="Report Bug or Suggestion" target="_blank"  href="https://forms.gle/8UVbSL1FS5ghQU3g6"><i class="fa fa-bug"></i></a></li>
+                <li><i id="animate" title="Control Animation" class="fa fa-spinner fa-spin" onclick="Animate()"></i></li>
+                <li><i id="theme-toggler" title="Control Theme" class="fa fa-sun" aria-hidden="true" onclick="toggler()"></i></li>
             </ul>
         </div>
     </nav>
@@ -70,14 +71,14 @@
   /* ---- tsparticles config ---- */
   tsParticles.load("particle-container",
       {
-      fpsLimit: 60,
+      fpsLimit: 30,
       backgroundMode: {
         enable: true,
         zIndex: 0
       },
       particles: {
         number: {
-          value: 200,
+          value: 100,
           density: {
             enable: true,
             area: 800
@@ -170,7 +171,7 @@
           },
           bubble: {
             distance: 400,
-            size: 40,
+            size: 10,
             duration: 2,
             opacity: 0.8
           },

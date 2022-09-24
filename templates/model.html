@@ -8,7 +8,7 @@
     <title>Lawnly - About The Model</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/model.css') }}">
-    <script src="{{url_for('static', filename='js/scripts.js')}}"></script>
+    <script src="{{url_for('static', filename='js/main.js')}}"></script>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="https://kit.fontawesome.com/0c7c27ff53.js" crossorigin="anonymous"></script>
@@ -16,12 +16,28 @@
     <script src="https://cdn.jsdelivr.net/npm/tsparticles@1.16.2/dist/tsparticles.min.js" integrity="sha256-2Sly/Hf9UP7YBu6LEPpn/6rxMZR5EeGq89mBa4G5+YA=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script> 
-    <style>h1{margin: auto;}</style>
+    <style>h1{margin: auto;}
+    
+      .h1logo{
+        margin-top: 19%;
+        margin-left: -11%;
+        font-size:1.1em;
+        text-decoration: none;
+        background-image: var(--color-grad-main);
+        background-size: 100%;
+        -webkit-background-clip: text;
+        -moz-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        -moz-text-fill-color: transparent;
+      }
+      .MathJax{
+font-size: 2vw;
+}
+    </style>
 </head>
 
-<body class="dark-mode" onload="detectTheme()">
-    <i id="theme-toggler" title="Control Theme" class="fa fa-sun" aria-hidden="true" onclick="toggler()"></i>
-    <i id="animate" title="Control Animation" class="fa fa-spinner fa-spin" onclick="Animate()"></i>
+<body class="dark-mode" onload="detectTheme()" onresize="setupfont()">
     <nav>
         <div style="display:flex ;">
             <a class="nav-logo" href="{{ url_for('index') }}"><img src="{{ url_for('static', filename='images/newLogo.png') }}" alt="Lawnly"></a>
@@ -34,6 +50,9 @@
                 <li><a class="not-active" href="{{ url_for('about_us') }}">About Us</a></li>
                 <li><a class="active" href="{{ url_for('about_model') }}">About The Model</a></li>
                 <li><a class="not-active" href="https://github.com/Ahmed23Adel/Lawnly" target="_blank">GitHub</a></li>
+                <li><a id="Bug" title="Report Bug or Suggestion" target="_blank"  href="https://forms.gle/8UVbSL1FS5ghQU3g6"><i class="fa fa-bug"></i></a></li>
+                <li><i id="animate" title="Control Animation" class="fa fa-spinner fa-spin" onclick="Animate()"></i></li>
+                <li><i id="theme-toggler" title="Control Theme" class="fa fa-sun" aria-hidden="true" onclick="toggler()"></i></li>
             </ul>
         </div>
     </nav>
@@ -76,49 +95,43 @@
                     </br> </br>   
                 </p>
 
-                <h2 class="sample-results">Sample of results</h2>
+                <h1 class="sample-results">Sample of results</h2>
                 <div class="sample-div">
-                    <div>
+                    <div class="sampleHolder">
                         <img src="{{ url_for('static', filename='images/line_art.jpg') }}" alt="Lawnly" class="sample">
-                        <h4 class="sample-desc"> Line art</h4>
+                        <h4 class="sample-desc"> Line arts</h4>
                     </div>
-                    <div>
+                    <div class="sampleHolder">
                         <img src="{{ url_for('static', filename='images/generated.png') }}" alt="Lawnly" class="sample">
-                        <h4  class="sample-desc"> Generated image</h4>
+                        <h4  class="sample-desc"> Generated images</h4>
                     </div>
-                    <div>
+                    <div class="sampleHolder">
                         <img src="{{ url_for('static', filename='images/original.jpg') }}" alt="Lawnly" class="sample">
-                        <h4  class="sample-desc"> Original one</h4>
+                        <h4  class="sample-desc"> Original ones</h4>
                     </div>
                     
                 </div>
                 <div class="sample-div">
-                    <div>
+                    <div class="sampleHolder">
                         <img src="{{ url_for('static', filename='images/line_art2.jpg') }}" alt="Lawnly" class="sample">
-                        <h4 class="sample-desc"> Line art</h4>
                     </div>
-                    <div>
+                    <div class="sampleHolder">
                         <img src="{{ url_for('static', filename='images/generated2.png') }}" alt="Lawnly" class="sample">
-                        <h4  class="sample-desc"> Generated image</h4>
                     </div>
-                    <div>
+                    <div class="sampleHolder">
                         <img src="{{ url_for('static', filename='images/original2.jpg') }}" alt="Lawnly" class="sample">
-                        <h4  class="sample-desc"> Original one</h4>
                     </div>
                     
                 </div>
                 <div class="sample-div">
-                    <div>
+                    <div class="sampleHolder">
                         <img src="{{ url_for('static', filename='images/line_art3.jpg') }}" alt="Lawnly" class="sample">
-                        <h4 class="sample-desc"> Line art</h4>
                     </div>
-                    <div>
+                    <div class="sampleHolder">
                         <img src="{{ url_for('static', filename='images/generated3.png') }}" alt="Lawnly" class="sample">
-                        <h4  class="sample-desc"> Generated image</h4>
                     </div>
-                    <div>
+                    <div class="sampleHolder">
                         <img src="{{ url_for('static', filename='images/original3.jpg') }}" alt="Lawnly" class="sample">
-                        <h4  class="sample-desc"> Original one</h4>
                     </div>
                     
                 </div>
@@ -151,21 +164,19 @@
                     
                     <br/><br/>
                     We tried many methods for converting to line art, like the difference of Gaussians, but Sobel could provide us with the most likely hand-drawn images.
-                    <div class="sample-div">
-                        <div>
+                    <div class="sample-div">    
+                        <div class="sampleHolder">
                             <img src="{{ url_for('static', filename='images/original4.jpg') }}" alt="Lawnly" class="sample">
-                            <h4  class="sample-desc"> Original one</h4>
+                            <h4  class="sample-desc"> Original image</h4>
                         </div>
-                        <div>
+                        <div class="sampleHolder">
                             <img src="{{ url_for('static', filename='images/arrow.png') }}" alt="Lawnly" class="sample">
                             <h4  class="sample-desc"> Sobel operator</h4>
                         </div>
-                        <div>
+                        <div class="sampleHolder">
                             <img src="{{ url_for('static', filename='images/line_art4.jpg') }}" alt="Lawnly" class="sample">
                             <h4 class="sample-desc"> After sobel operator</h4>
                         </div>
-                        
-                        
                     </div>
                     <p class="intro-body">
                         We used both of original image, and line-art generated image as training sets for our model.
@@ -175,23 +186,22 @@
                 </p>
             </div>
 
-            <div id="loss-func">
+            <div id="loss-func" >
                 <br/> <br/>
                 <h1 class="introduction">Loss function</h1>
-                <p  class="intro-body">
+                <p  class="intro-body" >
                     <script src='https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
                     <script type="text/x-mathjax-config">
                     MathJax.Hub.Config({
                         tex2jax: { inlineMath: [['$', '$']] }
                     });
                     </script>
-
-
                     We used VGG19 as visual perception, which  we used to generate the loss. we used the following equation, 
-                    \[Loss = \lambda \sum_{i=0}^{2}|f_i(x_{gen})-f_i(x_{orig})|.sumElements()/numElements()\]
-                    <script type="text/javascript" src="https://www.hostmath.com/Math/MathJax.js?config=OK"></script>
+                    <div style="font-size: 1.9vw;"> \[Loss = \lambda \sum_{i=0}^{2}|f_i(x_{gen})-f_i(x_{orig})|.sumElements()/numElements()\]
+                    <script type="text/javascript" src="https://www.hostmath.com/Math/MathJax.js?config=OK"></script></div>
                     <!-- <br/>
                     Loss =  $\lambda \sum_{i=0}^{2}|f_i^1(x)-f_i^2(x)|$ -->
+                    
                     where: <br/>
                     <a class="symbol-math">$x_{gen}$ </a> : is the generated image by the U-NET network. <br/>
                     <a class="symbol-math">$x_{orig}$ </a> : is the original colored image. <br/>
@@ -206,15 +216,7 @@
                      but their weights didn't work for us, and we didn't have the computational power to search in 
                      such space, so we set weights for the second and third layers to be 1, and the first layer to
                       be half, as not have a large effect of loss, as the first layer only compute the pixel-wise 
-                      difference, while second and third, may compute deeper features from images.
-
-
-                   
-                        
-                    
-
-
-                    
+                      difference, while second and third, may compute deeper features from images.    
                 </p>
             </div>
 
@@ -239,8 +241,8 @@
                     <img src="{{ url_for('static', filename='images/swish-layer.png') }}" alt="Lawnly" class="swish-layer-img">
                 </div>
 
-                <div class="swish-layer-div">
-                    <p class="swish-layer-body">
+                <div class="paper-newtworkHolder">
+                    <p class="swish-layer-body" style="flex-direction:column;">
                         In U-net there is a connection between corresponding layers, for example in their paper, they use a swish layer to: <br/> <br/>
                         <a class="symbol-math">1- Conv2d </a> <br/>
                         <a class="symbol-math">2- BatchNormalization </a> <br/>
@@ -254,15 +256,12 @@
                         <a class="symbol-math">3- from 256 to 512</a> <br/>
                         <a class="symbol-math">4- Bottleneck layer from 512 to 1024 </a> <br/> <br/>
                         For the up part, we managed to transform from 1024 to 3 channels only through 4 blocks of DoubleConv.
-                         We then connected the swish layers as described by the original paper, but only the vertical ones.
-                          We added a Dropout layer to be able to not use hint matrix, and let the model use different colors for different images.
-                         We added drop-out after every two consequent blocks in the down part, and every 3 consequent blocks in the up part. 
-                         We additionally, used the same Dropout layer for all networks.
-                    
+                        We then connected the swish layers as described by the original paper, but only the vertical ones.
+                        We added a Dropout layer to be able to not use hint matrix, and let the model use different colors for different images.
+                        We added drop-out after every two consequent blocks in the down part, and every 3 consequent blocks in the up part. 
+                        We additionally, used the same Dropout layer for all networks.
                     </p>
-
                     <img src="{{ url_for('static', filename='images/papaer-network.png') }}" alt="Lawnly" class="paper-newtwork-img">
-                    
                 </div>
 
                 <p class="intro-body">
@@ -287,14 +286,14 @@
   /* ---- tsparticles config ---- */
   tsParticles.load("particle-container",
     {
-    fpsLimit: 60,
+    fpsLimit: 30,
     backgroundMode: {
       enable: true,
       zIndex: 0
     },
     particles: {
       number: {
-        value: 200,
+        value: 100,
         density: {
           enable: true,
           area: 800
@@ -339,7 +338,7 @@
         random: true,
         animation: {
           enable: false,
-          speed: 40,
+          speed: 10,
           minimumValue: 0.1,
           sync: false
         }

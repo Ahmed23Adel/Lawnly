@@ -7,7 +7,7 @@
     <title>Lawnly - About Us</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/about_us.css') }}">
-    <script src="{{url_for('static', filename='js/scripts.js')}}"></script>
+    <script src="{{url_for('static', filename='js/main.js')}}"></script>
     <script src="https://kit.fontawesome.com/0c7c27ff53.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://cdn.jsdelivr.net/npm/tsparticles@1.16.2/dist/tsparticles.min.js" integrity="sha256-2Sly/Hf9UP7YBu6LEPpn/6rxMZR5EeGq89mBa4G5+YA=" crossorigin="anonymous"></script>
@@ -15,53 +15,54 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script> 
 </head>
 
-<body class="dark-mode" onload="detectTheme()">
-    <i id="theme-toggler" title="Control Theme" class="fa fa-sun" aria-hidden="true" onclick="toggler()"></i>
-    <i id="animate" title="Control Animation" class="fa fa-spinner fa-spin" onclick="Animate()"></i>
+<body class="dark-mode" onload="detectTheme()" style="height:fit-content;" onresize="setupfont()">
     <nav>
         <div style="display:flex ;">
             <a class="nav-logo" href="{{ url_for('index') }}"><img src="{{ url_for('static', filename='images/newLogo.png') }}" alt="Lawnly"></a>
             <h1>Lawnly</h1>
         </div>
+
         <div class="nav_elements">
             <ul>
                 <li><a class="not-active" href="{{ url_for('index') }}">Home</a></li>
                 <li><a class="active" href="{{ url_for('about_us') }}">About Us</a></li>
                 <li><a class="not-active" href="{{ url_for('about_model') }}">About The Model</a></li>
                 <li><a class="not-active" href="https://github.com/Ahmed23Adel/Lawnly" target="_blank">GitHub</a></li>
+                <li><a id="Bug" title="Report Bug or Suggestion" target="_blank"  href="https://forms.gle/8UVbSL1FS5ghQU3g6"><i class="fa fa-bug"></i></a></li>
+                <li><i id="animate" title="Control Animation" class="fa fa-spinner fa-spin" onclick="Animate()"></i></li>
+                <li><i id="theme-toggler" title="Control Theme" class="fa fa-sun" aria-hidden="true" onclick="toggler()"></i></li>
             </ul>
         </div>
     </nav>
     <div class="BackGround_Image" >
         <div class="index_Bg" >
             <div id="particle-container"></div>
-            <div class="quote" style="margin-top:8%;">
-                <h1 style="margin-top:3%;">“You don't learn to walk by following rules. You learn by doing, and by falling over.”</h1>
-                <h1 style="margin-top:3%;">― Richard Branson</h1>
+            <div class="quote">
+                <h1 >“You don't learn to walk by following rules. You learn by doing, and by falling over.”― Richard Branson</h1>
             </div>
 
-            <div style="display:flex;flex-wrap:nowrap; margin: auto;width: 50%;padding: 10px;" id="profs" onload="setupprofs()">
-                    <div class="profile" style="margin-left: 5%;">
-                        <h1 style="margin-left:20%;">Ahmed Adel</h1>
+            <div id="profs" onload="setupprofs()">
+                    <div class="profile">
+                        <h1>Ahmed Adel</h1>
                         <div class="profile-pic">
                             <img src="{{ url_for('static', filename='images/Adel.jpg') }}" alt="">
                         </div>
-                        <div class="social-container"style="margin-right: 3%;" >
-                            <a id="s-li" href="https://www.linkedin.com/in/ahmed23adel/" target="_blank" class="social"><img src="{{ url_for('static', filename='images/i_linkedin.svg') }}" alt=""></a>
-                            <a id="s-g" href="https://mail.google.com/mail/?view=cm&fs=1&to=s-ahmed.abdelmohsen@zewailcity.edu.eg" target="_blank" class="social"><img src="{{ url_for('static', filename='images/i_gmail.svg') }}" alt=""></a>
-                            <a id="s-gh" href="https://github.com/Ahmed23Adel/" target="_blank" class="social"><img src="{{ url_for('static', filename='images/i_github.svg') }}" alt=""></a>
+                        <div class="social-container">
+                            <a id="s-li" href="https://www.linkedin.com/in/ahmed23adel/" target="_blank" class="social bouncy"><img src="{{ url_for('static', filename='images/i_linkedin.svg') }}" alt=""></a>
+                            <a id="s-g" href="https://mail.google.com/mail/?view=cm&fs=1&to=s-ahmed.abdelmohsen@zewailcity.edu.eg" target="_blank" class="social bouncy"><img src="{{ url_for('static', filename='images/i_gmail.svg') }}" alt=""></a>
+                            <a id="s-gh" href="https://github.com/Ahmed23Adel/" target="_blank" class="social bouncy"><img src="{{ url_for('static', filename='images/i_github.svg') }}" alt=""></a>
                         </div>
                     </div>
         
                     <div class="profile">
-                        <h1 style="margin-left:21%;">Omar Emad</h1>
+                        <h1>Omar Emad</h1>
                         <div class="profile-pic">
                             <img src="{{ url_for('static', filename='images/Omar.jpg') }}" alt="">
                         </div>
                         <div  class="social-container" >
-                            <a id="s-li" href="https://www.linkedin.com/in/omar-emad-9b2790229/" target="_blank" class="social"><img src="{{ url_for('static', filename='images/i_linkedin.svg') }}" alt=""></a>
-                            <a id="s-g" href="https://mail.google.com/mail/?view=cm&fs=1&to=s-omar.emad@zewailcity.edu.eg" target="_blank" class="social"><img src="{{ url_for('static', filename='images/i_gmail.svg') }}" alt=""></a>
-                            <a id="s-gh" href="https://github.com/The-Sad-Zewalian/" target="_blank" class="social"><img src="{{ url_for('static', filename='images/i_github.svg') }}"" alt=""></a>
+                            <a id="s-li" href="https://www.linkedin.com/in/omar-emad-9b2790229/" target="_blank" class="social bouncy"><img src="{{ url_for('static', filename='images/i_linkedin.svg') }}" alt=""></a>
+                            <a id="s-g" href="https://mail.google.com/mail/?view=cm&fs=1&to=s-omar.emad@zewailcity.edu.eg" target="_blank" class="social bouncy"><img src="{{ url_for('static', filename='images/i_gmail.svg') }}" alt=""></a>
+                            <a id="s-gh" href="https://github.com/The-Sad-Zewalian/" target="_blank" class="social bouncy"><img src="{{ url_for('static', filename='images/i_github.svg') }}"" alt=""></a>
                         </div>
                     </div>
             </div>
@@ -75,14 +76,14 @@
   /* ---- tsparticles config ---- */
   tsParticles.load("particle-container",
       {
-      fpsLimit: 60,
+      fpsLimit: 30,
       backgroundMode: {
         enable: true,
         zIndex: 0
       },
       particles: {
         number: {
-          value: 200,
+          value: 100,
           density: {
             enable: true,
             area: 800
@@ -127,7 +128,7 @@
           random: true,
           animation: {
             enable: false,
-            speed: 40,
+            speed: 10,
             minimumValue: 0.1,
             sync: false
           }
