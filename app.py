@@ -1,5 +1,6 @@
 from __future__ import print_function # In python 2.7
 from flask import Flask, request, render_template, redirect, flash, send_from_directory, url_for
+import pickle
 from model.prediction import colorize_img,colorize_button_clicked
 from flask_uploads import UploadSet, IMAGES, configure_uploads
 from flask_wtf import FlaskForm
@@ -40,7 +41,7 @@ def index():
         file = request.files['file1'] # First grab the file
         filename_unq = str(uuid.uuid4())
         filename_unq = str(filename_unq+"_"+file.filename)
-        file_full_name = "{}\{}\{}".format(os.path.abspath(os.path.dirname(__file__)),app.config['UPLOAD_FOLDER'],secure_filename(str(filename_unq)))
+        file_full_name = os.path.join(os.path.abspath(os.path.dirname(__file__)),app.config['UPLOAD_FOLDER'],secure_filename(str(filename_unq)))
         file.save(file_full_name) # Then save the file
         colorize_img(file_full_name)
         gen_file_path = filename_unq.replace(".","_gen.")
