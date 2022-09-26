@@ -41,7 +41,7 @@ font-size: 2vw;
   <span id="mySidenavBtn" class="bouncy"  style="font-size: 5vw;position: absolute;cursor:pointer; z-index:2;" onclick="openNav()">&#9776;</span>
   <aside class="sidebar" id="mySidenav">
     <div style="display:flex ; width: inherit;">
-      <a style="transition: 0s;"  href="{{ url_for('index') }}"><img src="{{ url_for('static', filename='images/newLogo.png') }}" alt="Lawnly"></a>
+      <img src="{{ url_for('static', filename='images/newLogo.png') }}" alt="Lawnly">
       <h1>Lawnly</h1>
   </div>
 
@@ -53,14 +53,14 @@ font-size: 2vw;
         <li><a class="not-active" href="https://github.com/Ahmed23Adel/Lawnly" target="_blank">GitHub</a></li>
         <li><a id="Bug" title="Report Bug or Suggestion" target="_blank"  href="https://forms.gle/8UVbSL1FS5ghQU3g6"><i class="fa fa-bug"></i></a></li>
         <li><i id="animate1" title="Control Animation" class="fa fa-spinner fa-spin" onclick="Animate()"></i></li>
-        <li><i id="theme-toggler1" title="Control Theme" class="fa fa-sun" aria-hidden="true" onclick="toggler()"></i></li>
+        <li><i id="theme-toggler" title="Control Theme" class="fa fa-sun" aria-hidden="true" onclick="toggler()"></i></li>
       </ul>
   </div>
 </aside>
 
 <nav id="MyNav">
         <div style="display:flex ;">
-          <img src="{{ url_for('static', filename='images/newLogo.png') }}" alt="Lawnly">
+          <a class="nav-logo" href="{{ url_for('index') }}"><img src="{{ url_for('static', filename='images/newLogo.png') }}" alt="Lawnly"></a>
           <h1>Lawnly</h1>
         </div>
 
