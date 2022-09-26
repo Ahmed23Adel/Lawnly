@@ -16,7 +16,27 @@
 </head>
 
 <body class="dark-mode" onload="detectTheme()" style="height:fit-content;" onresize="setupfont()">
-    <nav>
+  <span id="mySidenavBtn" class="bouncy"  style="font-size: 5vw;position: absolute;cursor:pointer; z-index:2;" onclick="openNav()">&#9776;</span>
+  <aside class="sidebar" id="mySidenav">
+    <div style="display:flex ; width: inherit;">
+      <img src="{{ url_for('static', filename='images/newLogo.png') }}" alt="Lawnly">
+      <h1>Lawnly</h1>
+  </div>
+
+  <div class="nav_elements">
+      <ul>
+          <li><a class="not-active" href="{{ url_for('index') }}">Home</a></li>
+          <li><a class="active" href="{{ url_for('about_us') }}">About Us</a></li>
+          <li><a class="not-active" href="{{ url_for('about_model') }}">About The Model</a></li>
+          <li><a class="not-active" href="https://github.com/Ahmed23Adel/Lawnly" target="_blank">GitHub</a></li>
+          <li><a id="Bug" title="Report Bug or Suggestion" target="_blank"  href="https://forms.gle/8UVbSL1FS5ghQU3g6"><i class="fa fa-bug"></i></a></li>
+          <li><i id="animate1" title="Control Animation" class="fa fa-spinner fa-spin" onclick="Animate()"></i></li>
+          <li><i id="theme-toggler1" title="Control Theme" class="fa fa-sun" aria-hidden="true" onclick="toggler()"></i></li>
+      </ul>
+  </div>
+</aside>
+
+<nav id="MyNav">
         <div style="display:flex ;">
             <a class="nav-logo" href="{{ url_for('index') }}"><img src="{{ url_for('static', filename='images/newLogo.png') }}" alt="Lawnly"></a>
             <h1>Lawnly</h1>
@@ -34,7 +54,7 @@
             </ul>
         </div>
     </nav>
-    <div class="BackGround_Image" >
+    <div >
         <div class="index_Bg" >
             <div id="particle-container"></div>
             <div class="quote">

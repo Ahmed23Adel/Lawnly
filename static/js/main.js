@@ -1,9 +1,18 @@
 function detectTheme(){
-    
+    var toggler, animate;
+    if(document.getElementById('mySidenav').style.visibility=="visible"){
+        toggler = document.getElementById('theme-toggler1')
+        animate = document.getElementById('animate1')
+    }
+    else{
+       toggler = document.getElementById('theme-toggler')
+       animate = document.getElementById('animate')
+    }
+
+    document.body.addEventListener('paste', handlePaste);
     if (window.matchMedia) {
       const sun = 'fa-sun';
       const moon ='fa-moon';
-      const toggler = document.getElementById('theme-toggler');
       const wrapper = document.getElementsByClassName("Wrapper");
       var body=document.body;
       
@@ -21,31 +30,13 @@ function detectTheme(){
       }
 
     }
-    const animate = document.getElementById('animate');
     const spin = 'fa-spin';
     if(localStorage.getItem("animate")=="stop"){
       animate.classList.remove(spin);
     }
-    
-    const width  = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
-    if(width<1024&&width>800){
-        document.body.style.setProperty("font-size","2vw");
-    }
-    else if(width<800&&width>500){
-        document.body.style.setProperty("font-size","3vw");
-    }
-    else if(width<500&&width>350){
-        document.body.style.setProperty("font-size","4vw");
-    }
-    else{
-        document.body.style.setProperty("font-size","1.5vw");
-    }
+    localStorage.setItem("LineArt", "false");
+    setupfont();
 }
-
-
-
-
-
 
 function dataURLtoFile(dataurl, filename) {
     var arr = dataurl.split(','), mime = arr[0].match(/:(.*?);/)[1],
@@ -68,7 +59,10 @@ function LineArtIt() {
     var myDiv = document.getElementById('gallery'); 
     var img = myDiv.children[0]; 
     if(img===undefined){
-        alert("Please Upload and Image")
+        alert("Please Upload An Image.")
+    }
+    else if(localStorage.getItem("LineArt")=="true"){
+        alert("Best Results Are Obtained From A Single Press.")
     }
     else{
         let Kx = [-1, 0, +1, -2, 0, +2, -1, 0, +1];
@@ -142,6 +136,7 @@ function LineArtIt() {
 
         dataTransfer.items.add(newImage);
         file.files = dataTransfer.files;
+        localStorage.setItem("LineArt", "true");
     }
 }
 
@@ -168,8 +163,15 @@ const moon ='fa-moon';
 const spin = 'fa-spin';
 
 function toggler(){
-    const toggler = document.getElementById('theme-toggler')
-    const animate = document.getElementById('animate')
+    var toggler, animate;
+    if(document.getElementById('mySidenav').style.visibility=="visible"){
+        toggler = document.getElementById('theme-toggler1')
+        animate = document.getElementById('animate1')
+    }
+    else{
+       toggler = document.getElementById('theme-toggler')
+       animate = document.getElementById('animate')
+    }
     const body=document.body;
     const wrapper = document.getElementsByClassName("Wrapper");
     if(toggler.classList.contains(sun)){
@@ -188,7 +190,13 @@ function toggler(){
 }
 
 function Animate(){
-    const animate = document.getElementById('animate')
+    var animate;
+    if(document.getElementById('mySidenav').style.visibility=="visible"){
+        animate = document.getElementById('animate1')
+    }
+    else{
+       animate = document.getElementById('animate')
+    }
     const particles = tsParticles.domItem(0);
     const options = particles.options;
     if(animate.classList.contains(spin)){
@@ -214,17 +222,148 @@ function setParticles(color, colorArr,flag){
 }
 
 function setupfont(){
+    const particles = tsParticles.domItem(0);
+    particles.refresh();
     const width  = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
     if(width<1024&&width>800){
         document.body.style.setProperty("font-size","2vw");
+        document.getElementById("mySidenavBtn").style.visibility = "hidden";
+        document.getElementById("mySidenavBtn").style.color = "var(--solid-white)";
+        document.getElementById("mySidenav").style.visibility = "hidden";
+        document.getElementById("mySidenav").style.width = "0";
+        document.getElementById("MyNav").style.visibility = "visible";
     }
     else if(width<800&&width>500){
         document.body.style.setProperty("font-size","3vw");
+        document.getElementById("mySidenavBtn").style.visibility = "visible";
+        document.getElementById("mySidenavBtn").style.color = "var(--solid-black)";
+        document.getElementById("mySidenav").style.visibility = "hidden";
+        document.getElementById("mySidenav").style.width = "0";
+        document.getElementById("MyNav").style.visibility = "hidden";
     }
     else if(width<500&&width>350){
         document.body.style.setProperty("font-size","4vw");
+        document.getElementById("mySidenavBtn").style.visibility = "visible";
+        document.getElementById("mySidenavBtn").style.color = "var(--solid-black)";
+        document.getElementById("mySidenav").style.visibility = "hidden";
+        document.getElementById("mySidenav").style.width = "0";
+        document.getElementById("MyNav").style.visibility = "hidden";
     }
     else{
         document.body.style.setProperty("font-size","1.5vw");
+        document.getElementById("mySidenavBtn").style.visibility = "hidden";
+        document.getElementById("mySidenavBtn").style.color = "var(--solid-white)";
+        document.getElementById("mySidenav").style.visibility = "hidden";
+        document.getElementById("mySidenav").style.width = "0";
+        document.getElementById("MyNav").style.visibility = "visible";
+    }
+}
+
+function handlePaste(e) {
+    var clipboardData;
+  
+    // Stop data actually being pasted into div
+    e.stopPropagation();
+    e.preventDefault();
+    
+    // Get pasted data via clipboard API
+    clipboardData = e.clipboardData || window.clipboardData;
+    var items = clipboardData.items;
+    var blob;
+    for (var i = 0; i < items.length; i++) {
+        // Skip content if not image
+        if (items[i].type.indexOf("image") == -1) continue;
+        // Retrieve image on clipboard as blob
+        var blob = items[i].getAsFile();
+    }
+  
+    previewFile(blob);
+}
+
+function handleFiles(files) {
+    files = [...files]
+    uploadFile(files[0])
+    previewFile(files[0])
+    files=[];
+}
+
+function uploadFile(file) {
+    let url = 'YOUR URL HERE'
+    let formData = new FormData()
+    formData.append('file', file)
+}
+
+function previewFile(file) {
+  const acceptedImageTypes = ['image/jpg','image/jpeg', 'image/png'];   
+  if(file && acceptedImageTypes.includes(file['type'])){
+    let imgs= document.getElementById('gallery');
+    imgs.innerHTML = '';
+    let reader = new FileReader()
+    reader.readAsDataURL(file)
+    reader.onloadend = function() {
+        let img = document.createElement('img')
+        img.setAttribute('id', 'INPUT');//This Is where we create the input image in the html with id=INPUT
+        img.src = reader.result
+        imgs.appendChild(img)
+    }
+    localStorage.setItem("LineArt", "false");
+  }   
+  else{
+    alert("Please Upload An Image Of Type JPG,JPEG Or PNG");
+  }  
+}
+
+function CloseSample(){
+    const gallery = document.getElementById('gallery-Wrapper');
+    gallery.style.setProperty("visibility","");
+    gallery.style.setProperty("z-index","-1");
+}
+function OpenSample(){
+    const gallery = document.getElementById('gallery-Wrapper');
+    gallery.style.setProperty("visibility","visible");
+    gallery.style.setProperty("z-index","2");
+}
+
+function getBase64Image(img) {
+    var canvas = document.createElement("canvas");
+    canvas.width = img.naturalWidth;
+    canvas.height = img.naturalHeight;
+    var ctx = canvas.getContext("2d");
+    ctx.drawImage(img, 0, 0);
+    return canvas.toDataURL();
+}
+
+function Select(element){
+
+    base64URI=getBase64Image(element);
+    var newImage=dataURLtoFile(base64URI,"file1.png")
+    var file = document.getElementById('fileElem');
+
+    const dataTransfer = new DataTransfer();
+
+    dataTransfer.items.add(newImage);
+    file.files = dataTransfer.files;
+
+    let imgs= document.getElementById('gallery');
+    imgs.innerHTML = '';
+    let img = document.createElement('img')
+    img.setAttribute('id', 'INPUT');//This Is where we create the input image in the html with id=INPUT
+    img.src = element.src;
+    imgs.appendChild(img)
+    localStorage.setItem("LineArt", "true");
+    CloseSample();
+}
+
+function openNav() {
+    if( document.getElementById("mySidenav").style.visibility == "visible"){
+        document.getElementById("mySidenav").style.width = "0";
+        document.getElementById("mySidenav").style.visibility = "hidden";
+        document.getElementById("mySidenavBtn").style.color = "var(--solid-black)";
+
+    }
+    else {
+        document.getElementById("mySidenav").style.width = "50vw";
+        document.getElementById("mySidenav").style.visibility = "visible";
+        document.getElementById("mySidenavBtn").style.color = "var(--solid-white)";
     }
 }

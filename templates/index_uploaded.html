@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=0.9">
     <link rel="icon" type="images/x-icon" href="{{ url_for('static', filename='images/newLogo.png') }}">
-    <title>Uploaded</title>
+    <title>Lawnly - Home</title>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/main.css') }}">
     <script src="{{url_for('static', filename='js/main.js')}}"></script>
     <script src="https://kit.fontawesome.com/0c7c27ff53.js" crossorigin="anonymous"></script>
@@ -16,7 +16,59 @@
 </head>
 
 <body class="dark-mode" onload="detectTheme()" onresize="setupfont()">
-    <nav>
+  <div id="gallery-Wrapper">
+    <div style="display: block;">
+        <div class="sample-Header"><i class="fa fa-window-close closebtn" aria-hidden="true" onclick="CloseSample()"></i></div>
+        <div id="sample-Gallery">
+  
+          <img src="{{ url_for('static', filename='images/Sample/20.jpg') }}" alt="" onclick="Select(this)">
+          <img src="{{ url_for('static', filename='images/Sample/19.jpg') }}" alt="" onclick="Select(this)">
+          <img src="{{ url_for('static', filename='images/Sample/18.jpg') }}" alt="" onclick="Select(this)">
+          <img src="{{ url_for('static', filename='images/Sample/17.jpg') }}" alt="" onclick="Select(this)">
+          <img src="{{ url_for('static', filename='images/Sample/16.jpg') }}" alt="" onclick="Select(this)">
+          
+          <img src="{{ url_for('static', filename='images/Sample/15.jpg') }}" alt="" onclick="Select(this)">
+          <img src="{{ url_for('static', filename='images/Sample/14.jpg') }}" alt="" onclick="Select(this)">
+          <img src="{{ url_for('static', filename='images/Sample/13.jpg') }}" alt="" onclick="Select(this)">
+          <img src="{{ url_for('static', filename='images/Sample/12.jpg') }}" alt="" onclick="Select(this)">
+          <img src="{{ url_for('static', filename='images/Sample/11.jpg') }}" alt="" onclick="Select(this)">
+  
+          <img src="{{ url_for('static', filename='images/Sample/10.jpg') }}" alt="" onclick="Select(this)">
+          <img src="{{ url_for('static', filename='images/Sample/9.jpg') }}" alt="" onclick="Select(this)">
+          <img src="{{ url_for('static', filename='images/Sample/8.jpg') }}" alt="" onclick="Select(this)">
+          <img src="{{ url_for('static', filename='images/Sample/7.jpg') }}" alt="" onclick="Select(this)">
+          <img src="{{ url_for('static', filename='images/Sample/6.jpg') }}" alt="" onclick="Select(this)">
+  
+          <img src="{{ url_for('static', filename='images/Sample/5.jpg') }}" alt="" onclick="Select(this)">
+          <img src="{{ url_for('static', filename='images/Sample/4.jpg') }}" alt="" onclick="Select(this)">
+          <img src="{{ url_for('static', filename='images/Sample/3.jpg') }}" alt="" onclick="Select(this)">
+          <img src="{{ url_for('static', filename='images/Sample/2.jpg') }}" alt="" onclick="Select(this)">
+          <img src="{{ url_for('static', filename='images/Sample/21.jpg') }}" alt="" onclick="Select(this)">
+  
+        </div>
+    </div>
+  </div>
+  <span id="mySidenavBtn" class="bouncy"  style="font-size: 5vw;position: absolute;cursor:pointer; z-index:2;" onclick="openNav()">&#9776;</span>
+  <aside class="sidebar" id="mySidenav">
+      <div style="display:flex ; width: inherit;">
+        <img src="{{ url_for('static', filename='images/newLogo.png') }}" alt="Lawnly">
+        <h1>Lawnly</h1>
+    </div>
+
+    <div class="nav_elements">
+        <ul>
+            <li><a class="active" href="{{ url_for('index') }}">Home</a></li>
+            <li><a class="not-active" href="{{ url_for('about_us') }}">About Us</a></li>
+            <li><a class="not-active" href="{{ url_for('about_model') }}">About The Model</a></li>
+            <li><a class="not-active" href="https://github.com/Ahmed23Adel/Lawnly" target="_blank">GitHub</a></li>
+            <li><a id="Bug" title="Report Bug or Suggestion" target="_blank"  href="https://forms.gle/8UVbSL1FS5ghQU3g6"><i class="fa fa-bug"></i></a></li>
+            <li><i id="animate1" title="Control Animation" class="fa fa-spinner fa-spin" onclick="Animate()"></i></li>
+            <li><i id="theme-toggler1" title="Control Theme" class="fa fa-sun" aria-hidden="true" onclick="toggler()"></i></li>
+        </ul>
+    </div>
+  </aside>
+  
+  <nav id="MyNav">
         <div style="display:flex ;">
             <a class="nav-logo" href="{{ url_for('index') }}"><img src="{{ url_for('static', filename='images/newLogo.png') }}" alt="Lawnly"></a>
             <h1>Lawnly</h1>
@@ -34,34 +86,38 @@
             </ul>
         </div>
     </nav>
+
     <div class="BackGround_Image">
         <div class="index_Bg" >
             <div id="particle-container"></div>
             <div class="main">
-                <div>
-                    <label class="button" for="fileElem">Upload Image</label>
-                    <div id="drop-area">
+                <div class="drpdiv">
+                  <div style="display:flex; justify-content: space-evenly ; width: 100%;">
+                    <label title="Upload An Image To Colorize" class="button" for="fileElem">Upload <i class="fa fa-upload" aria-hidden="true"></i></label>
+                    <label title="Try One Of Our Samples!" class="button bouncy" onclick="OpenSample()" >Try A Sample!</label>
+                  </div>
+                  <div id="drop-area">
                         <form id="myform" class="my-form" method='POST' enctype='multipart/form-data'>
                           <input type="file" id="fileElem" name="file1" multiple accept="image/*" onchange="handleFiles(this.files)" required>
                         </form>
-
                         <div id="gallery">
                             <img src="{{ url_for('static', filename='' + gray_val + '') }}" width=100%, alt="">
                         </div>
                     </div>
-                    <label style="margin-left:29%;" class="button" onclick="LineArtIt()">Turn To Line Art!</label>
+                    <label  class="button" onclick="LineArtIt()" title="Turn A Colored Image To Line Art">Turn To Line Art! <i class="fa fa-pencil" aria-hidden="true"></i></label>
                 </div>
 
-                <div>
-                    <a style="margin-left:40% ;" class="button" href="#" onclick="prepHref(this)" ><i class="fa fa-download"> </i> Download</a>
+                <div class="drpdiv">
+                    <a class="button" href="#" onclick="prepHref(this)" ><i class="fa fa-download"> </i> Download</a>
                     <div class="drop-area">
                         <div id="gallery-out">
-                            <img src="{{ url_for('static', filename='' + gen_val + '') }}", alt="" style="margin-top:2.5%;  width: 500px; height: 450px; margin-left:3.5%; vertical-align: middle;">
+                            <img src="{{ url_for('static', filename='' + gen_val + '') }}", alt="">
                         </div>
                     </div>
+                    <label  class="pseudobtn">Turn To Line Art!</label>
                 </div>
             </div>
-            <button class="submit_button" type="submit" form="myform" value="Submit">Colorize</button> 
+            <button title="Colorize The Image" class="submit_button bouncy" type="submit" form="myform" value="Submit">Colorize <i class="fa fa-paint-brush" aria-hidden="true"></i></button>  
         </div>
     </div>
 

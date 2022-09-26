@@ -41,11 +41,14 @@ def save_samples(fake_img, original_name):
 def colorize_img(file_path = "G:\Zc Things\Work\Anime Colorization\Lawnly\images\line_art.jpg"):
     #reading the image
     image = Image.open(file_path).convert('RGB')
+    width, height = image.size
     image = trans(image)
     image.unsqueeze_(0)    
     output = generator(image)
-    file_path = file_path.replace(".","_gen.")
-    save_samples(output,file_path)
+    outtrans = T.Compose([T.Resize((width, height))])
+    output = outtrans(output)
+    file_path = file_path.replace(".", "_gen.")
+    save_samples(output, file_path)
     return file_path
 
 
