@@ -16,7 +16,7 @@
 </head>
 
 <body class="dark-mode" onload="detectTheme()" style="height:fit-content;" onresize="setupfont()">
-  <span id="mySidenavBtn" class="bouncy"  style="font-size: 5vw;position: absolute;cursor:pointer; z-index:2;" onclick="openNav()">&#9776;</span>
+  <span id="mySidenavBtn" class="bouncy"  style="font-size: 5vw;position: absolute;cursor:pointer; z-index:2; visibility: hidden;" onclick="openNav()">&#9776;</span>
   <aside class="sidebar" id="mySidenav">
     <div style="display:flex ; width: inherit;">
       <img src="{{ url_for('static', filename='images/newLogo.png') }}" alt="Lawnly">
