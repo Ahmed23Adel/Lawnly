@@ -5,6 +5,13 @@ We tried in this model to colorize anime arts, It's already known that colorizin
 <img width="1429" alt="Screenshot 2022-12-18 at 8 22 52 AM" src="https://user-images.githubusercontent.com/69484554/208284609-6d2d3edb-ff46-49eb-a25c-0d5656d1b6b8.png">
 
 
+you can try a sample, or upload your own gray image.
+
+# Deployment
+we deployed it on Azure, the website will be available untill my student subscription ends.
+ 
+Link to the website: https://lawnlyanimecolorization.azurewebsites.net
+
 # model
 Our model is based on a U-NET network; however, it's a bit modified from the original one, by utilizing a swish layer, which was firstly published by Ru-Ting Ye (Ye et al., 2019) We didn't use GAN for image generation training; although, we used VGG19 as visual perceptron, and used them in some way as a loss function; it generated great results, better than what we got after training GAN. 
 
